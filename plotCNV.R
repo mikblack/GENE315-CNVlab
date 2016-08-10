@@ -39,7 +39,7 @@ plotCNV <- function(data,sample,gene,...,truncate=FALSE){
   yl<-c(0.9,1.1)*range(cnt)
   if(truncate & gene=="FCGR") yl<-c(0.9,1.1)*range(cnt[-c(1:169)])
   if(truncate & gene!="FCGR")
-    stop("The 'truncate' option cn only be used with the FCR region")
+    stop("The 'truncate' option can only be used with the FCGR region")
   plot(seq(st,en,l=num),cnt,type='l',col='white',
        xlab=paste('Chromosome', ch ,'Position (HG19/GRCh37)'),
        ylab='Read Count',main=paste(gene,": ",sample,", ",
