@@ -1,0 +1,340 @@
+---
+title: "Appendix 1: R code - week 1"
+author: "Mik Black"
+date: "6 & 7 April 2016"
+output: html_document
+---
+
+## Overview
+
+In this part of the lab you will be looking at copy number variation in samples 
+from the 1000 Genomes Project, using publicly available high-throughput sequencing 
+data.  The link for the 1000 Genomes Project is:
+
+http://1000genomes.org
+
+The first couple of questions for your lab report relate to the 1000 Genomes 
+Project - you should be able to find the answers to those questions by reading 
+the website.
+
+Aligned sequence data from the 1000 Genomes Project was obtained from their
+ftp download site:
+
+ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/
+
+For this lab we are using a relatively small subset of the full data (310 samples)
+out of 2535, from three of the 26 populations included in the study.
+
+As mentioned in class, the aligned data for each sample is stored in the BAM format
+on the ftp server.  One of the nice things about BAM is that you can *index* the
+data files, which makes it possible to retrieve a subset of the data (e.g., from
+a particular region of the genome) without having to download the entire data file.
+
+This is an important point, as the data files for a single sample are fairly large 
+(e.g., around 30GB).  For this lab I have downloaded data from regions around the three genes of 
+interest (AMY1A, IRGM and FCGR3B).  For each of the three regions, the data extracted
+was only between 3MB & 20MB, making it relatively quick and (somewhat) easy to retrieve 
+data for large numbers of samples.
+
+## Recap: read depth and copy number
+
+In class we talked about read depth (number of times a base of DNA was read by 
+the sequencer) could be used to investigate changes in copy number.  The plot below
+shows an example of a duplication, with a corresponding increase in read depth 
+across the duplicated region:
+
+![ngs4](PNG/ngs4.png)
+
+The opposite occurs with deletions - decreased read depth across the deleted region, as shown in the following plot:
+
+![ngs5](PNG/ngs5.png)
+
+For low coverage samples (i.e., samples for which the average read depth is 
+relatively low, e.g., less than 10x) simply calculating read depth at every base 
+can make for very noisy data.  An alternative is to split the region of interest
+into fixed-width *windows* (e.g., 500 or 1000bp), and calculate the total number 
+of reads whose alignments start in each window (just keeping track of the start 
+positions avoids double-counting, as read alignments can only start in one place).
+The plot below illustrates this idea, with the red lines indicating the windows, and the counts denoting the number of aligned reads starting in each window.
+
+![ngs6](PNG/ngs6.png)
+
+## Calculating read depth
+
+In order to generate windows and calculate read depth for the regions and samples
+we are interested in for this lab, we need to split the region into fixed sized 
+windows, and then take the aligned data and count how many reads begin in each window.
+To do this we can use the _samtools_ application (or the _Rsamtools_ package from within R).  Unfortunately (or luckily, depending on how much you like writing code) the Rsamtools was slightly too tricky to install on the Student Desktop, so I have carried out this process for you.
+
+## Getting started in R
+
+We will be performing our R-based analysis using the Rstudio application on the Student Desktop. To begin using Rstudio, log in to the Student Desktop:
+
+https://student.desktop.otago.ac.nz/
+
+and find Rstudio in the Windows start menu (bottom left of the screen).
+
+## Downloading the data
+
+The data and R files needed for this lab are located on Blackboard in a zip file
+in the "CNV Computer Lab - week 1" folder.  Download this file to the desktop, and unzip it.  In R, set your working directory to be the folder that is created when the file is unzipped.
+
+The zip file contains four files:
+
+* AMY1A-counts.csv - data for the AMY1A region 
+* FCGR-counts.csv  - data for the FCGR region 
+* IRGM-counts.csv  - data for the IRGM region
+* plotCNV.R        - R function to generate plots of the window counts
+
+Each of the data files contains per window count data across the region of 
+interest, for a collection of samples from the 1000 Genomes Project. If you want 
+to see the data format, you can open the files in Microsoft Excel (genomic 
+positions as rows, samples as columns).
+
+## Data generation parameters and samples
+
+The following parameters were used to generate the data for the three regions of interest:
+
+Gene region | Chr | Start | End | Length | Window
+------------|-----|-------|-----|--------|-------
+AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp
+IRGM        | 5   | 150124000 | 150324000 | 200Kbp |  500bp
+FCGR        | 1   | 161300000 | 161800000 | 500Kbp | 1000bp
+
+The populations for which data were downloaded are:
+
+Population | N (number of samples) | Columns of data set
+----|--|----
+CEU |  99 |    1 - 99
+CHB | 103 | 100 - 202
+YRI | 108 | 203 - 310
+
+## IMPORTANT NOTE
+
+The analyses below relate to the data from the FCGR locus.  For your lab report, you need to 
+perform a similar analysis for IRGM.  The code below will be very helpful - you will just need to 
+replace the FCGR data with the data for IRGM.  __MAKE SURE YOU SAVE YOUR R COMMANDS IN A FILE. THIS 
+WILL ALLOW YOU TO EASILY RERUN THEM (AND/OR ALTER THEM FOR THE IRGM DATA) LATER ON. ASK ME HOW TO DO THIS IF YOU ARE NOT SURE__.
+
+## Getting the data into R
+
+In order to read the data into R, the ```read.csv()``` function can be used.  The following code reads the data for the FCGR region into an object called ```fcgrDat```.
+The ```row.names=1``` setting tells the command that the row names for the data
+set can be found in the first column that is read in:
+
+```{r}
+fcgrDat = read.csv('FCGR-counts.csv', row.names=1)
+```
+
+We can get some information about the ```fcgrDat``` object as follows:
+
+```{r}
+## Type of object
+class(fcgrDat)
+
+## Size of object (rows, columns)
+dim(fcgrDat)
+
+## First 10 row names
+rownames(fcgrDat)[1:10]
+
+## First 5 column names
+colnames(fcgrDat)[1:5]
+
+## First 10 rows and first 5 columns of data
+fcgrDat[1:10,1:5]
+```
+
+We can access the data for a single sample in a few ways:
+
+```{r}
+## First 10 observations for the 1st sample (NA06984)...
+fcgrDat[1:10,1]
+
+## ...which is the same as:
+fcgrDat[1:10,"NA06984"]
+
+## All of the data for the first sample (NA06984):
+fcgrDat[,"NA06984"]
+```
+
+We can use this approach to calculate some basic statistics for the data from 
+this sample:
+
+```{r}
+## Calculate the median number of counts per window for sample NA06984:
+median( fcgrDat[,"NA06984"] )
+
+## Calculate the total number of reads that aligned across this region for
+## sample NA06984:
+sum( fcgrDat[,"NA06984"] )
+
+## Calculate the range of the counts in this region for sample NA06984:
+range( fcgrDat[,"NA06984"] )
+```
+
+## Exploratory analysis
+
+Since we know the length of the reads (100bp) and the size of the region around the FCGR genes (500Kbp), we can caculate the average read depth for this region.  We use the median to reduce the impact of outlying observations (such as changes in copy number):
+
+```{r}
+## Average read depth is given by:
+## (Read length) x (Number of Reads) / (Length of Region)
+100 * sum( fcgrDat[,"NA06984"] ) / 500000
+```
+
+So the average read depth across this region for sample NA6984 
+is `r round(100 * sum( fcgrDat[,"NA06984"] ) / 500000,2)` (i.e., on average, 
+each base in this region was read 
+`r round(100 * sum( fcgrDat[,"NA06984"] ) / 500000,2)` times in this sample).
+
+What about all of the other samples?  We can use some other functions to perform 
+similar calculations on all of the samples simultaneously.  The ```colMeans()``` 
+function calculates the mean of every column in an R data.frame:
+
+```{r, eval=FALSE}
+## I've suppressed the output here - it's just a page of numbers...
+colMeans( fcgrDat )
+```
+
+Similary, the ```colSums()``` function will calculate the sum for every column
+
+```{r}
+## Calculate column sums for first 10 samples:
+colSums( fcgrDat[,1:10] )
+```
+
+We can examine the distribution of the mean per-window counts for each sample
+by plotting a histogram:
+
+```{r}
+## Create histogram of mean per-window counts per sample
+## The "20" parameter indicates the approximate number of bins to use in the plot
+hist( colMeans(fcgrDat), 20)
+```
+
+We can make the plot more informative by improving the labels.  The ```main``` parameter specifies the plot title, while ```xlab``` and ```ylab``` specify the x and y axis labels.
+
+```{r}
+hist( colMeans(fcgrDat), 20, main="FCGR region: mean counts per window",
+      xlab="Mean counts per window")
+```
+
+#### Use the commands you've learned so far to generate a histogram of average read depth across the FCGR region for all samples.
+
+## Exploring copy number variation
+
+The file ```plotCNV.R``` contains a function for plotting the count data for a sample 
+across the region of interest.  The file can be read into R via
+
+```{r}
+source('plotCNV.R')
+```
+
+The following command plots the data for sample NA06984 across the FCGR region:
+
+```{r}
+plotCNV( fcgrDat, "NA06984", "FCGR" )
+```
+
+The gray vertical bars mark the FCGR genes, and the black trace depicts the per-window
+counts across the region.  The large "spiky" area to the left of the FCGR genes relates 
+to a region of repetitive DNA where sequence alignment is difficult.
+
+We can add information about the median to the plot using the ```abline()``` function
+(the "h" parameter denotes a horizontal line, "col" idicates colour, and "lty" selects the line type):
+
+```{r}
+plotCNV( fcgrDat, "NA06984", "FCGR" )
+abline( h = median(fcgrDat[, "NA06984"]), col='blue', lty=2 )
+```
+
+"Normal" copy number for the FCGR region is 2, so for an individual with 2 copies of this region we would expect the per-window read count to fluctuate around the median
+value.  An individual with a duplication would have higher values, while an indiviudal 
+with a deletion would have lower values. The following plot adds a line at twice the median - the level you would expect to see the per-window counts rise to in an area where four copies existed in a sub-region of the FCGR locus.
+
+```{r}
+plotCNV( fcgrDat, "NA06984", "FCGR" )
+abline( h = median(fcgrDat[, "NA06984"]), col='blue' )
+abline( h = 2*median(fcgrDat[, "NA06984"]), col='blue', lty=2 )
+```
+
+Because the repetitive sequence before the FCGR region can affect the range of
+the plot, the ```plotCNV()``` function includes the option to truncate the height of the 
+y axis (this only works for the FCGR region):
+
+```{r}
+plotCNV( fcgrDat, "NA06984", "FCGR", truncate=TRUE)
+```
+
+In order to create plots for multiple samples, we can use a "for loop".  In the example below the vaiable ```i``` takes the values 1,2,...,6 through each iteration through the loop, and prints the value of ```i``` each time:
+
+```{r}
+for(i in 1:6){
+  print(i)
+}
+```
+
+We can use this to automate data processing - the following exaple calculates the
+mean for each of the first 6 samples:
+
+```{r}
+for(i in 1:6){
+  print( mean(fcgrDat[,i]) )
+}
+```
+
+This is the same as the result obtained from applying the ```colMeans()``` function to the first six columns of the ```fcgrDat``` data object:
+
+```{r} 
+colMeans( fcgrDat[,1:6] )
+```
+
+In order to use this functionality to automate plot generate, it is useful to turn on a setting that asks us to hit "enter" before each plot is displayed (```par()``` is a
+function to set graphics parameters):
+
+```{r, eval=FALSE}
+par(ask=TRUE)
+```
+
+#### Use the commands you have learned so far to generate plots of the FCGR region for the first 20 samples (or all of them if you feel like hitting "enter" a lot!).
+
+#### HINT: the following code might help you:
+
+```{r, eval=FALSE}
+i = 1
+plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
+```
+
+## Other populations
+
+The first 99 samples are all from the CEU population. To examine the data from other populations, you need to select samples relating to that population.  The relevant
+column ranges are lsited in the table in the "Data generation parameters and samples"
+section of this document.
+
+For example, to plot the first sample from the YRI population, you could use the 
+command:
+
+```{r}
+plotCNV( fcgrDat, colnames(fcgrDat)[203], "FCGR", truncate=TRUE)
+```
+
+If you look through the first 20 CEU samples, and the first 20 YRI samples, we see about the same number of duplications at FCGR3B in each population (2 in CEU and 3 in YRI, although they are pretty hard to call).  To determine whether there is a significant difference in the FCGR duplication rate between the populations, we can use the Chi-squared test.  First we need to construct a simple 2x2 table representing our observtaions (2 duplications and 18 non-duplications in CEU and 3 duplications and 17 non-duplications in YRI):
+
+```{r}
+matrix( c(2,18,3,17), 2,2)
+```
+
+We can then perform the Chi-squared test on this table
+
+```{r, warning=FALSE}
+chisq.test( matrix( c(2,18,3,17), 2,2) )
+```
+
+which (as you would expect from the data) shows no evidence for a difference in duplication frequency between the two populations.  The same result is seen when using Fisher's Exact Test (which is probably the better test to use here, due to the small sample size, and low counts in the table):
+
+```{r}
+fisher.test( matrix( c(2,18,3,17), 2,2) )
+```
+
+

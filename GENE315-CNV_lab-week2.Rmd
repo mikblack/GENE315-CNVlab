@@ -1,0 +1,175 @@
+---
+title: "Appendix 2: R code - week 2"
+author: "Mik Black"
+date: "13 & 14 April 2015"
+output: html_document
+---
+
+## Overview
+
+This week we will be doing three things:
+
+* Continuing looking at the count data from last week, focusing on differences between the three loci (AMY1A, IRGM, FCGR) across the three populations (CEU, CHB, YRI).
+* Looking at single nucleotide polymorphism (SNP) data from SNPs near the IRGM and FCGR3B genes.
+* Combining the SNP and CNV data to investigate linkage disequilibrium (LD) in the three populations.
+
+This document will walk through some simple analysis in R to acccomplish the tasks above.
+
+__REMINDER: FOR YOUR LAB REPORT YOU WILL NEED TO ALTER THE CODE BELOW TO PERFORM A SIMILAR
+ANALYSIS FOR THE IRGM DATA AND THE RELEVANT SNP (rs13361189).__
+
+## CNV - back to FCGR
+
+Load the FCGR count data that we used last week:
+```{r}
+fcgrDat = read.csv('FCGR-counts.csv', row.names=1)
+```
+
+One of the tasks last week was to use the commands you had learned to loop through the first 20 plots of the FCGR data for the CEU population.  Hopefully your code looked something like this:
+
+```{r, eval=FALSE}
+source('plotCNV.R')
+par(ask=T)
+for(i in 1:20){
+  plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
+  abline(h = median(fcgrDat[,i]),col='blue')
+  abline(h = 1.5*median(fcgrDat[,i]),col='blue',lty=2)
+  abline(h = 0.5*median(fcgrDat[,i]),col='blue',lty=2)
+}
+```
+
+Use this code to examine the FCGR region for the first 20 samples in the CEU population.  Which samples appear to exhibit CNV (i.e., do not have CN=2) for the FCGR3B gene (marked as "3B" on the plot)?
+
+Repeat this process for the AMY1A locus.  Reminder - you can load the AMY1A data via:
+
+```{r, eval=FALSE}
+amy1aDat = read.csv('AMY1A-counts.csv', row.names=1)
+```
+
+Have a think about the differences (in terms of how the plots look) between the two loci.  For which locus do you think it would be easier to call copy number using these data?
+
+## Copy number calls
+
+Luckily for you I went through all 310 samples and manually called (i.e., guesstimated) copy number for the region upstream of IRGM, and for the FCGR3B gene, based on the plots of the count data (yep, thats right - 310 samples, twice...)
+
+These data are saved in the file ```CNcalls.csv```.  You can load them into R via:
+
+```{r}
+CNcalls = read.csv('CNcalls.csv')
+```
+
+View the first rows of the data via:
+
+```{r}
+head(CNcalls)
+```
+
+Have a look at the FCGR3B copy number calls for the first 20 samples - do they agree with the calls you made when you generated the 20 FCGR region plots above?
+
+As for the count data, the first 99 rows relate to the CEU population, the next 103 relate to CHB and the final 108 are for YRI.  We can investigate the relationship differences in FCGR3B copy number across populations via:
+
+```{r}
+fcgrTab = table(CNcalls[,"Population"], CNcalls[,"FCGR3B_CN"])
+fcgrTab
+```
+
+The Chi-squared test can be used to determine whether the distribution of copy number is consistent across the three populations:
+```{r}
+chisq.test( fcgrTab )
+```
+
+As mentioned last week, it is more appropriate to use Fisher's Exact Test when possible, as the Chi-squared test is an approximation.  Here the results are similar:
+```{r}
+fisher.test( fcgrTab )
+```
+
+The significant p-value indicates that copy nmber variation for FCGR3B does not occur at the same frequency across the three populations.
+
+It is easiest to see this by converting the table data
+to proportions.  Adding the "1" parameter ensures that the proporitions are specific to each row (population):
+
+```{r}
+options(digits=3)
+prop.table( fcgrTab, 1)
+```
+
+We can also represent this information graphically:
+
+```{r, fig.height=5, fig.width=5}
+barplot( prop.table( fcgrTab, 1), beside=TRUE, legend=TRUE, xlab="FCGR3B copy number", ylab= "Proportion within population")
+```
+
+## SNP data
+
+The file ```CNcalls.csv``` contains copy number calls for SNPs near the IRGM and FCGR3B genes.  For IRGM the SNP ID is ```rs13361189```, and for FCGR3B the SNP ID is 
+```rs117435514```.  These data are stored in the files ```IRGM_rs13361189.csv``` and 
+```FCGR_rs117435514.csv```.
+
+These data were obtained from the ensembl website.  Have a look at the 1000 Geneomes Project data for SNP ```rs117435514``` by searching for it at
+
+http://www.ensembl.org/Homo_sapiens/
+
+and then clikcing on the "population genetics" link.  This provides data on SNP frequency (and also per-sample genotype) across the populations.  The data from this website was used to create SNP genotype files for the samples we are analysing in this lab.
+
+The data for FCGR can be loaded as follows:
+
+```{r}
+fcgrSNP = read.csv('FCGR_rs117435514.csv')
+```
+
+Look at the first six rows:
+
+```{r}
+head(fcgrSNP)
+```
+
+The distribution of SNP genotypes can be examined via:
+
+```{r}
+table( fcgrSNP[,"rs117435514"] )
+```
+
+which shows that most individuals have the AA genotype, and relatively few have the AG genotype (and none have the GG genotype).  These genotypes can also be viewed across population groups, which shows that most of the genotypic variation in this SNP occurs in the CHB population:
+
+```{r}
+table( fcgrSNP[,"Population"], fcgrSNP[,"rs117435514"] )
+```
+
+We can also represent the genotype proportions as a bar graph:
+
+```{r, fig.height=4, fig.width=4}
+fcgrSnpTab = table( fcgrSNP[,"Population"], fcgrSNP[,"rs117435514"] )
+round( prop.table(fcgrSnpTab, 1), 3)
+barplot( prop.table(fcgrSnpTab, 1), beside=TRUE, legend=TRUE, xlab="rs117435514 genotype", ylab= "Proportion within population")
+```
+
+## TagSNPs - combining SNP and CNV data
+
+If a specific SNP genotype is a associated with a change in copy number in a particular region, then that SNP can be said to *tag* that copy number variant.  That is, an individual with that SNP genotype is more likely to also have altered copy number for that region.
+
+We can investigate this at the FCGR locus by combining the copy number calls for FCGR3B with the genotype data for SNP rs117435514 (note that this works because I've made sure that all of the data are in the same order in each file):
+
+```{r}
+table( fcgrSNP[,"rs117435514"], CNcalls[,"FCGR3B_CN"], dnn=c("SNP","CopyNumber") )
+```
+
+The ```dnn``` parameter allows us to label the rows and columns of the table.  We can look at just the CHB population as follows:
+
+```{r}
+table( fcgrSNP[,"rs117435514"], CNcalls[,"FCGR3B_CN"],  CNcalls[,"Population"] )[,,"CHB"] 
+```
+
+Clearly individuals in the CHB population are more likely to have 3 copies of the FCGR3B gene if they have the AG genotype as compared to the AA genotype, but the *tagging* is not anywhere near perfect.
+
+We can test to see if this association is statistically significant using Fisher's Exact Test:
+
+```{r}
+fcgrCHBtab = table( fcgrSNP[,"rs117435514"], CNcalls[,"FCGR3B_CN"],  CNcalls[,"Population"] )[,,"CHB"] 
+fisher.test( fcgrCHBtab )
+```
+
+So, even though the SNP rs117435514 does not tag CNV at FCGR3B particularly well, the association is highly statistically significant (i.e., it is very unlikely that we would see a relationship this strong by chance).
+
+
+
+
