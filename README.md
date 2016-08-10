@@ -7,7 +7,7 @@ Rendered HTML of lecture and lab handouts:
  - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-CNV_lab-week1.html
  - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-CNV_lab-week2.html
 
-Lab lecture
+Lab lecture - __NB: the Rmd file is processed using the R `Slidify` package rather than `knitr` in RStudio.__
  - GENE315-lecture9.Rmd: Lecture (half session) covering concepts behind bioinformatics component of CNV lab module.
  - GENE315-lecture9.html: HTML version of lecture slides.
 
