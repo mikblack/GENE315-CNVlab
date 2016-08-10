@@ -2,6 +2,11 @@
 
 Copy Number Variation lab module for GENE315 at University of Otago using 1000 Genomes Project data.
 
+Rendered HTML of lecture and lab handouts:
+ - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-lecture9.html
+ - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-CNV_lab-week1.html
+ - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-CNV_lab-week2.html
+
 Lab lecture
  - GENE315-lecture9.Rmd: Lecture (half session) covering concepts behind bioinformatics component of CNV lab module.
  - GENE315-lecture9.html: HTML version of lecture slides.
