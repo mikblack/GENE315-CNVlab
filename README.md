@@ -21,10 +21,10 @@ R helper functions
  - plotCNV.R: function to plot local CNV in specific genomic region (FCGR, IRGM or AMY1).
 
 Data files
- - AMY1A-counts.csv: read count data for 1000 Genomes populations (CEU, YRI, CHB) in AMY1A region.
- - FCGR-counts.csv: read count data for 1000 Genomes populations (CEU, YRI, CHB) in FCGR region.
- - IRGM-counts.csv: read count data for 1000 Genomes populations (CEU, YRI, CHB) in IRGM region.
+ - AMY1A-counts.csv: read count data for [1000 Genomes Project](http://www.1000genomes.org/) populations (CEU, YRI, CHB) in AMY1A region.
+ - FCGR-counts.csv: read count data for [1000 Genomes Project](http://www.1000genomes.org/) populations (CEU, YRI, CHB) in FCGR region.
+ - IRGM-counts.csv: read count data for [1000 Genomes Project](http://www.1000genomes.org/) populations (CEU, YRI, CHB) in IRGM region.
  - CNcalls.csv: CN call data for FCGR region (based on manual inspection of CN plots).
- - FCGR_rs117435514.csv: SNP genotype data for rs117435514 in 1000 Genomes populations (CEU, YRI, CHB).
- - IRGM_rs13361189.csv: SNP genotype data for rs13361189 in 1000 Genomes populations (CEU, YRI, CHB).
+ - FCGR_rs117435514.csv: SNP genotype data for rs117435514 in [1000 Genomes Project](http://www.1000genomes.org/) populations (CEU, YRI, CHB).
+ - IRGM_rs13361189.csv: SNP genotype data for rs13361189 in [1000 Genomes Project](http://www.1000genomes.org/) populations (CEU, YRI, CHB).
  - PNG: directory of figures for lecture notes and lab handouts
