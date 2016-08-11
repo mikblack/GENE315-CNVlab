@@ -18,3 +18,5 @@ PNG/samformat.png
 PNG/samtools.png
 PNG/trapnell.png
 libraries
+.Rhistory
+.gitignore
