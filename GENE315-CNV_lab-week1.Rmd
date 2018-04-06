@@ -1,34 +1,46 @@
 ---
-title: "Appendix 1: R code - week 1"
+title: "GENE315 CNV lab - week 1"
 author: "Mik Black"
-date: "6 & 7 April 2016"
-output: html_document
+date: "29 & 30 March 2017"
+output:
+  html_document: default
+  pdf_document: default
 ---
 
-## Overview
+## Background: copy number variation
 
-In this part of the lab you will be looking at copy number variation in samples 
-from the 1000 Genomes Project, using publicly available high-throughput sequencing 
-data.  The link for the 1000 Genomes Project is:
+Deviation from the diploid copy number in genomic segments (>50 bp) is known as copy number variation (CNV). Copy number variants often encompass genes and are an important but poorly understood source of variation in genomes. In humans copy number variation has been associated with phenotypes such as autoimmune disease and weight. IRGM is a relatively simple 20kb insertion-deletion upstream of the immunity-related GTPase family M gene and is associated with Crohn’s disease (Prescott et al. 2010). FCGR3B (Fc gamma receptor 3B) is within a more complex locus (refer lectures) with copy number typically varying from 0 to 4 within a population (McKinney and Merriman, 2012). It is associated with autoimmune diseases such as rheumatoid arthritis and systemic lupus erythematosus. AMY1 (amylase1) is the most complex locus, with copy number varying from 2 to >15 within a given population. Between populations it correlates with ancestral diet – the higher the starch, the higher the copy number (Perry et al. 2007).
+
+## Generation of copy number calls from 1000 Genomes data
+
+High-throughput DNA sequencing technologies provide the ability to examine copy number variation on a whole genome scale. When a sample is sequenced it is assigned an average coverage level, which reflects the number of bases sequenced relative to the size of the genome. For example, if 300 million 100bp reads are generated for a 3Gbp genome the average coverage will be 10x (number of reads x read length / genome size = 300,000,000 x 100 / 3,000,000).  Analysis approaches based on read depth use this idea to identify regions that exhibit large deviations away from the expected level of coverage to identify changes in copy number. For example, a region exhibiting 30x coverage in a diploid genome that has been sequenced to a depth of 20x could reflect a gain of one additional copy of that region of DNA. 
+
+In order to generate copy number calls based on read depth, aligned sequence data are required. The 1000 Genomes Project provides such data for the genomes of thousands of individuals from populations around the world. In this part of the lab we will use data from the 1000 Genomes Project to investigate variation in gene copy number at the IRGM, FCGR3B and AMY1 loci.
+
+Aligned DNA sequence read data will be provided for a subset of the 1000 Genomes sample data for 1Mbp regions around the three loci of interest. At each locus you will use the R software to perform:
+
+ - Generation of read depth information
+ - Visualisation of read depth across the region of interest
+ - Segmentation analysis to identify regions of altered copy number
+
+Below is an example of the R code required to perform an analysis of CNV at the FCGR locus - we will work through this code in the lab. You will then need to alter the provided code to perform a similar analysis for IRGM so you can answer the questions on the final page of this document. 
+
+## Overview: 1000 Genomes Project
+
+In this lab you will be looking at copy number variation in samples 
+from the 1000 Genomes Project, using publicly available high-throughput sequencing data.  The link for the 1000 Genomes Project is:
 
 http://1000genomes.org
 
-The first couple of questions for your lab report relate to the 1000 Genomes 
-Project - you should be able to find the answers to those questions by reading 
-the website.
+The first couple of questions for your lab report relate to the 1000 Genomes Project - you should be able to find the answers to those questions by reading the website.
 
-Aligned sequence data from the 1000 Genomes Project was obtained from their
-ftp download site:
+Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site:
 
 ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/
 
-For this lab we are using a relatively small subset of the full data (310 samples)
-out of 2535, from three of the 26 populations included in the study.
+For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.
 
-As mentioned in class, the aligned data for each sample is stored in the BAM format
-on the ftp server.  One of the nice things about BAM is that you can *index* the
-data files, which makes it possible to retrieve a subset of the data (e.g., from
-a particular region of the genome) without having to download the entire data file.
+As mentioned in class, the aligned data for each sample is stored in the BAM format on the ftp server.  One of the nice things about BAM is that you can *index* the data files, which makes it possible to retrieve a subset of the data (e.g., from a particular region of the genome) without having to download the entire data file.
 
 This is an important point, as the data files for a single sample are fairly large 
 (e.g., around 30GB).  For this lab I have downloaded data from regions around the three genes of 
@@ -43,11 +55,11 @@ the sequencer) could be used to investigate changes in copy number.  The plot be
 shows an example of a duplication, with a corresponding increase in read depth 
 across the duplicated region:
 
-![ngs4](PNG/ngs4.png)
+![](PNG/ngs4.png)
 
 The opposite occurs with deletions - decreased read depth across the deleted region, as shown in the following plot:
 
-![ngs5](PNG/ngs5.png)
+![](PNG/ngs5.png)
 
 For low coverage samples (i.e., samples for which the average read depth is 
 relatively low, e.g., less than 10x) simply calculating read depth at every base 
@@ -57,22 +69,22 @@ of reads whose alignments start in each window (just keeping track of the start
 positions avoids double-counting, as read alignments can only start in one place).
 The plot below illustrates this idea, with the red lines indicating the windows, and the counts denoting the number of aligned reads starting in each window.
 
-![ngs6](PNG/ngs6.png)
+![](PNG/ngs6.png)
 
 ## Calculating read depth
 
 In order to generate windows and calculate read depth for the regions and samples
 we are interested in for this lab, we need to split the region into fixed sized 
 windows, and then take the aligned data and count how many reads begin in each window.
-To do this we can use the _samtools_ application (or the _Rsamtools_ package from within R).  Unfortunately (or luckily, depending on how much you like writing code) the Rsamtools was slightly too tricky to install on the Student Desktop, so I have carried out this process for you.
+To do this we can use the _samtools_ application (or the _Rsamtools_ package from within R).  Unfortunately (or luckily, depending on how much you like writing code) the Rsamtools can be tricky to install, so I have carried out this process for you.
 
 ## Getting started in R
 
-We will be performing our R-based analysis using the Rstudio application on the Student Desktop. To begin using Rstudio, log in to the Student Desktop:
+We will be performing our R-based analysis using the RStudio application. There are a number of ways to use RStudio for this lab:
 
-https://student.desktop.otago.ac.nz/
-
-and find Rstudio in the Windows start menu (bottom left of the screen).
+ - on your own computer, with R and RStudio installed
+ - on the lab computers in ACAL 
+ - on your own computer, logging into the Student Desktop: https://student.desktop.otago.ac.nz/
 
 ## Downloading the data
 
@@ -337,4 +349,27 @@ which (as you would expect from the data) shows no evidence for a difference in 
 fisher.test( matrix( c(2,18,3,17), 2,2) )
 ```
 
+\pagebreak
+
+## Lab report
+
+Please include the following details in your lab report:
+
+1. The data being used in this lab were generated as part of the 1000 Genomes Project. Briefly describe what sort of technology has produced these data, and how we are using this information to examine gene copy number.
+
+2. The populations used in this lab are denoted CEU, CHB and YRI.  Explain what these codes mean.
+
+3. Load the IRGM data, and display the data for sample NA18510.  Explain what these numbers relate to, in terms of the original aligned read data from the 1000 Genomes Project.
+
+4. Calculate the median of the data for sample NA18510.  Assuming that two copies of the region upstream of IRGM gene are present in most individuals, what value would you expect the data to take in the region of IRGM if three copies of this region were present?  What if only one copy were present?
+
+5. Generate a plot of sample NA18510 with the median marked on the plot via the abline command.  Also show the lines expected for three copies, and one copy.  Based on the results of your plot, how many copies of the region upstream of IRGM do you think this individual has?
+
+6. How many reads were aligned for sample NA18510 across this region?  Assuming that the reads are each 100bp long, and the region itself spans 200,000 bases, calculate the average sequence read depth for this region.
+
+7. Use the colSums function to calculate the total number of reads aligned for each sample.  Generate a histogram showing the average read depth for each sample.
+
+8. Examine the IRGM plots for the first 20 samples from each of the CEU, YRI and CHB populations.  Which population exhibited a higher incidence of a deletion upstream of IRGM?  What was the number of samples with this deletion in each of the CEU, CHB and YRI populations?
+
+9. Perform a Fisher's Exact Test to determine whether the differences you observe in IRGM deletion frequency differ across the three populations.  Based on the output of the test, what do you conclude about IRGM deletion is these populations?
 

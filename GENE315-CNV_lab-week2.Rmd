@@ -1,7 +1,7 @@
 ---
-title: "Appendix 2: R code - week 2"
+title: "GENE315 CNV lab - week 2"
 author: "Mik Black"
-date: "13 & 14 April 2015"
+date: "5 & 6 April 2017"
 output: html_document
 ---
 
@@ -129,10 +129,18 @@ The distribution of SNP genotypes can be examined via:
 table( fcgrSNP[,"rs117435514"] )
 ```
 
-which shows that most individuals have the AA genotype, and relatively few have the AG genotype (and none have the GG genotype).  These genotypes can also be viewed across population groups, which shows that most of the genotypic variation in this SNP occurs in the CHB population:
+which shows that most individuals have the AA genotype, and relatively few have the AG genotype (and none have the GG genotype).  Also, note that some of the samples have missing genotype data for this SNP, denoted by `<NA>` in the output above.
+
+These genotypes can also be viewed across population groups, which shows that most of the genotypic variation in this SNP occurs in the CHB population:
 
 ```{r}
 table( fcgrSNP[,"Population"], fcgrSNP[,"rs117435514"] )
+```
+
+The amount of missing data can be inferred from the table above, since there should be 99, 103 and 108 genotype values for the CEU, CHB and YRI populations respectively.  Adding `useNA='always'` to the `table` command shows the missing data:
+
+```{r}
+table( fcgrSNP[,"Population"], fcgrSNP[,"rs117435514"] , useNA='always')
 ```
 
 We can also represent the genotype proportions as a bar graph:
@@ -169,6 +177,28 @@ fisher.test( fcgrCHBtab )
 ```
 
 So, even though the SNP rs117435514 does not tag CNV at FCGR3B particularly well, the association is highly statistically significant (i.e., it is very unlikely that we would see a relationship this strong by chance).
+
+## Lab report
+
+The lab report for this module is due on 26th April (Wednesday stream) or 27th April (Thursday stream).  For your report, please provide answers to the 9 questions from the final page of the week one handout, and the 6 questions below.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+
+### Week two questions:
+
+Please include the following details in your lab report:
+
+1.	Load the IRGM copy number calls, and generate a table, a proportion table, and a barplot for these calls across the three populations. Comment on whether IRGM copy number status appears to be independent of population.
+
+2.	Formally test for an association between population and copy number in the region upstream of IRGM.  Comment on the test result, and provide an interpretation of this in terms of IRGM copy number frequencies in these populations.
+
+3.	Load the rs13361189 SNP data, and generate a table showing the genotype frequencies.  What is the most frequently observed geneotype?
+
+4.	Look at the frequency of rs13361189 across the three populations - generate a table, a proportion table, and a barplot for these calls across the three populations. Formally test for an association between population and rs13361189 SNP genotype.  Comment on your results, and provide an interpretation in terms of rs13361189 genotype frequencies in these populations.
+
+5.	Combine the rs13361189 SNP genotypes and copy number data relating to IRGM. Create a table of genotype versus copy number, and peform a formal test for association.  Provide an interpretation of your results. How good is rs13361189 genotype at tagging loss of the region upstream of IRGM?
+
+6.  How do your results (in terms of association between rs13361189 genotype and IRGM copy number) compare to those presented by Prescott et al. (2010).
+
+Prescott, N. J., Dominy, K. M., Kubo, M., Lewis, C. M., Fisher, S. A., Redon, R., et al. (2010). Independent and population-specific association of risk variants at the IRGM locus with Crohn's disease. _Human Molecular Genetics_, 19(9), 1828–1839. http://doi.org/10.1093/hmg/ddq041
 
 
 
