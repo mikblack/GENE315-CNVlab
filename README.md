@@ -3,8 +3,8 @@
 Copy Number Variation lab module for GENE315 at University of Otago using [1000 Genomes Project](http://www.1000genomes.org/) data.
 
 Rendered HTML of lab handouts:
- - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-CNV_lab-week1.html
- - https://rawgit.com/mikblack/GENE315-CNVlab/master/GENE315-CNV_lab-week2.html
+ - https://cdn.rawgit.com/mikblack/GENE315-CNVlab/de37ce2f/GENE315-CNV_lab-week1.html
+ - https://cdn.rawgit.com/mikblack/GENE315-CNVlab/de37ce2f/GENE315-CNV_lab-week2.html
 
 Lab handouts for statistical analysis - weeks 1 & 2 (appendicies 1 & 2 of lab book) 
  - GENE315-CNV_lab-week1.Rmd: R markdown of R code and commentary for week 1.
