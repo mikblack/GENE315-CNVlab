@@ -85,14 +85,21 @@ We will be performing our R-based analysis using the RStudio application. There 
 ## Downloading the data
 
 The data and R files needed for this lab are located on Blackboard in a zip file
-in the "CNV Computer Lab - week 1" folder.  Download this file to the desktop, and unzip it.  In R, set your working directory to be the folder that is created when the file is unzipped.
+in the " Module 2: Copy Number Variation" folder.  Download this file to the desktop, and unzip it.  
+In R, set your working directory to be the folder that is created when the file is unzipped.
 
-The zip file contains four files:
+The zip file contains four files that we will use this week:
 
 * AMY1A-counts.csv - data for the AMY1A region 
 * FCGR-counts.csv  - data for the FCGR region 
 * IRGM-counts.csv  - data for the IRGM region
 * plotCNV.R        - R function to generate plots of the window counts
+
+We'll use the other three files next week:
+
+* CNcalls.csv
+* IRGM_rs13361189.csv
+* FCGR_rs117435514.csv
 
 Each of the data files contains per window count data across the region of 
 interest, for a collection of samples from the 1000 Genomes Project. If you want 
