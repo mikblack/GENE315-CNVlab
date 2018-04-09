@@ -30,15 +30,11 @@ Below is an example of the R code required to perform an analysis of CNV at the 
 In this lab you will be looking at copy number variation in samples 
 from the 1000 Genomes Project, using publicly available high-throughput sequencing data.  The link for the 1000 Genomes Project is:
 
-http://1000genomes.org
+http://www.internationalgenome.org/
 
 The first couple of questions for your lab report relate to the 1000 Genomes Project - you should be able to find the answers to those questions by reading the website.
 
-Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site:
-
-ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/
-
-For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.
+Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site. For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.
 
 As mentioned in class, the aligned data for each sample is stored in the BAM format on the ftp server.  One of the nice things about BAM is that you can *index* the data files, which makes it possible to retrieve a subset of the data (e.g., from a particular region of the genome) without having to download the entire data file.
 
@@ -352,6 +348,11 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 \pagebreak
 
 ## Lab report
+
+The lab report for this module is due on 3rd May (Wednesday stream) or 4th May (Thursday stream).  For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+
+
+## Week one questions:
 
 Please include the following details in your lab report:
 

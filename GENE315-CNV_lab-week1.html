@@ -144,11 +144,9 @@ $(document).ready(function () {
 <div id="overview-1000-genomes-project" class="section level2">
 <h2>Overview: 1000 Genomes Project</h2>
 <p>In this lab you will be looking at copy number variation in samples from the 1000 Genomes Project, using publicly available high-throughput sequencing data. The link for the 1000 Genomes Project is:</p>
-<p><a href="http://1000genomes.org" class="uri">http://1000genomes.org</a></p>
+<p><a href="http://www.internationalgenome.org/" class="uri">http://www.internationalgenome.org/</a></p>
 <p>The first couple of questions for your lab report relate to the 1000 Genomes Project - you should be able to find the answers to those questions by reading the website.</p>
-<p>Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site:</p>
-<p><a href="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/" class="uri">ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/</a></p>
-<p>For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.</p>
+<p>Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site. For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.</p>
 <p>As mentioned in class, the aligned data for each sample is stored in the BAM format on the ftp server. One of the nice things about BAM is that you can <em>index</em> the data files, which makes it possible to retrieve a subset of the data (e.g., from a particular region of the genome) without having to download the entire data file.</p>
 <p>This is an important point, as the data files for a single sample are fairly large (e.g., around 30GB). For this lab I have downloaded data from regions around the three genes of interest (AMY1A, IRGM and FCGR3B). For each of the three regions, the data extracted was only between 3MB &amp; 20MB, making it relatively quick and (somewhat) easy to retrieve data for large numbers of samples.</p>
 </div>
@@ -471,6 +469,10 @@ plotCNV( fcgrDat, colnames(fcgrDat)[i], &quot;FCGR&quot;, truncate=TRUE)</code><
 </div>
 <div id="lab-report" class="section level2">
 <h2>Lab report</h2>
+<p>The lab report for this module is due on 3rd May (Wednesday stream) or 4th May (Thursday stream). For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout. When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question. Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).</p>
+</div>
+<div id="week-one-questions" class="section level2">
+<h2>Week one questions:</h2>
 <p>Please include the following details in your lab report:</p>
 <ol style="list-style-type: decimal">
 <li><p>The data being used in this lab were generated as part of the 1000 Genomes Project. Briefly describe what sort of technology has produced these data, and how we are using this information to examine gene copy number.</p></li>
