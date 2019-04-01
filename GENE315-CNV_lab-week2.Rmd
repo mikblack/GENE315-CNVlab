@@ -2,8 +2,16 @@
 title: "GENE315 CNV lab - week 2"
 author: "Mik Black"
 date: "10 & 11 April 2019"
-output: html_document
+output:
+  html_document: default
+  github_document: default
 ---
+
+<!-- The following will produce markdown output that will be viewble on GitHub: -->
+<!-- rmarkdown::render('GENE315-CNV_lab-week2.Rmd', output_format="github_document") -->
+
+<!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
+<!-- knitr::purl('GENE315-CNV_lab-week2.Rmd') -->
 
 ## Overview
 
