@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 2"
 author: "Mik Black"
-date: "18 & 19 April 2018"
+date: "10 & 11 April 2019"
 output: html_document
 ---
 
