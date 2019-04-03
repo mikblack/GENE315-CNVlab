@@ -3,6 +3,10 @@ GENE315 CNV lab - week 1
 Mik Black
 3 & 4 April 2019
 
+<!-- The following will produce markdown output that will be viewble on GitHub: -->
+<!-- rmarkdown::render('GENE315-CNV_lab-week1.Rmd', output_format="github_document") -->
+<!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
+<!-- knitr::purl('GENE315-CNV_lab-week1.Rmd') -->
 Background: copy number variation
 ---------------------------------
 
@@ -456,7 +460,7 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 Lab report
 ----------
 
-The lab report for this module is due on 3rd May (Wednesday stream) or 4th May (Thursday stream). For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout. When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question. Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The lab report for this module is due on 2nd May (Wednesday stream) or 3th May (Thursday stream). For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout. When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question. Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 Week one questions:
 -------------------
