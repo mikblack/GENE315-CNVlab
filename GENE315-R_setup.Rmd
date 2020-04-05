@@ -1,0 +1,64 @@
+---
+title: "GENE315 - software installation"
+author: "Mik Black"
+date: "30 March 2020"
+output: 
+  html_document: default
+  github_document: default
+---
+
+<!-- Run line below in R to render multiple documents: -->
+<!-- rmarkdown::render(here::here("bioc461-setup.Rmd"), output_format='all') -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this GENE315 lab module we will be using the R statistical software running in the RStudio 
+application to perform data visualisation and analysis.
+
+## Download the data
+
+The data for this module are available from Blackboard. 
+
+Instructions for downloading the required files are contained in the 
+`GENE315-CNV_lab-week1.pdf` document in the "Module 2: Copy Number Variation" folder 
+(under "Labs" in the "Course Documents" section).
+
+## R and RStudio on your computer, or Student Desktop?
+
+If you have problems getting R and RStudio installed (or accessing them via the Student Desktop), please get in touch with me via email: `mik.black@otago.ac.nz`
+
+### Your computer
+
+If you are using your own computer for this lab, you will need to have R and RStudio installed.  Install or update R **before** you install or update RStudio.
+
+To install the latest version of R, visit the following website, and download the version for your operating system:
+
+`http://cran.stat.auckland.ac.nz`
+
+
+If you are running a version of R earlier than 3.6.1, that is probably okay, but just be aware that older versions of R do sometimes cause problems.
+
+To install RStudio, visit the following website
+
+`https://rstudio.com/products/rstudio/download`
+
+and download the free version of "RStudio Desktop" for your operating system.
+
+If you already have RStudio installed, you can upgrade to the latest version by choosing "Check for Updates" from the RStudio "Help" menu. 
+
+### Student Desktop
+
+If you are unable to install R and RStudio on your own device, then accessing these through the student desktop might be an option.  The following link:
+
+`https://student.desktop.otago.ac.nz`
+
+will open a Windows Desktop on your computer, and you can access RStudio from the Start Menu in the lower left of the screen.
+
+## Getting started
+
+**NB: you will be doing your analysis in RStudio, so don't worry about using the R application (it needs to be installed, but we don't have to open it) - just open RStudio and use that for all of your work.**
+
+Once you have access to RStudio, you can get started with the work for the lab by downloading the file `GENE315-CNV_lab-week1.pdf` from Blackboard, and watching the video walkthrough of the lab (access this from the "Echo360 Recordings" button in the "Labs" folder under "Course Documents")
+

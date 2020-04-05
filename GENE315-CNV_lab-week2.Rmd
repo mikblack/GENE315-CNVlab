@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 2"
 author: "Mik Black"
-date: "10 & 11 April 2019"
+date: "8 & 9 April 2020"
 output:
   html_document: default
   github_document: default
@@ -17,14 +17,13 @@ output:
 
 This week we will be doing three things:
 
-* Continuing looking at the count data from last week, focusing on differences between the three loci (AMY1A, IRGM, FCGR) across the three populations (CEU, CHB, YRI).
+* Continuing looking at the count data from last week, focusing on differences between the two loci (IRGM, FCGR) across the three populations (CEU, CHB, YRI).
 * Looking at single nucleotide polymorphism (SNP) data from SNPs near the IRGM and FCGR3B genes.
 * Combining the SNP and CNV data to investigate linkage disequilibrium (LD) in the three populations.
 
 This document will walk through some simple analysis in R to acccomplish the tasks above.
 
-__REMINDER: FOR YOUR LAB REPORT YOU WILL NEED TO ALTER THE CODE BELOW TO PERFORM A SIMILAR
-ANALYSIS FOR THE IRGM DATA AND THE RELEVANT SNP (rs13361189).__
+__REMINDER: FOR YOUR LAB REPORT YOU WILL NEED TO ALTER THE CODE BELOW TO PERFORM A SIMILAR ANALYSIS FOR THE IRGM DATA AND THE RELEVANT SNP (rs13361189).__
 
 ## CNV - back to FCGR
 
@@ -47,14 +46,6 @@ for(i in 1:20){
 ```
 
 Use this code to examine the FCGR region for the first 20 samples in the CEU population.  Which samples appear to exhibit CNV (i.e., do not have CN=2) for the FCGR3B gene (marked as "3B" on the plot)?
-
-Repeat this process for the AMY1A locus.  Reminder - you can load the AMY1A data via:
-
-```{r, eval=FALSE}
-amy1aDat = read.csv('AMY1A-counts.csv', row.names=1)
-```
-
-Have a think about the differences (in terms of how the plots look) between the two loci.  For which locus do you think it would be easier to call copy number using these data?
 
 ## Copy number calls
 
@@ -104,7 +95,8 @@ prop.table( fcgrTab, 1)
 We can also represent this information graphically:
 
 ```{r, fig.height=5, fig.width=5}
-barplot( prop.table( fcgrTab, 1), beside=TRUE, legend=TRUE, xlab="FCGR3B copy number", ylab= "Proportion within population")
+barplot( prop.table( fcgrTab, 1), beside=TRUE, legend=TRUE,
+         xlab="FCGR3B copy number", ylab= "Proportion within population")
 ```
 
 ## SNP data
@@ -188,7 +180,7 @@ So, even though the SNP rs117435514 does not tag CNV at FCGR3B particularly well
 
 ## Lab report
 
-The lab report for this module is due on 2nd May (Wednesday stream) or 3rd May (Thursday stream).  For your report, please provide answers to the 9 questions from the final page of the week one handout, and the 6 questions below.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The lab report for this module is due on 22nd April (Wednesday stream) or 23rd April (Thursday stream).  For your report, please provide answers to the **9 questions from the final page of the week one handout, and the 6 questions below**.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 ### Week two questions:
 

@@ -260,7 +260,7 @@ Since we know the length of the reads (100bp) and the size of the region around 
 100 * sum( fcgrDat[,"NA06984"] ) / 500000
 ```
 
-    ## [1] 12.4302
+    ## [1] 12.4
 
 So the average read depth across this region for sample NA6984 is 12.43 (i.e., on average, each base in this region was read 12.43 times in this sample).
 
@@ -373,12 +373,12 @@ for(i in 1:6){
 }
 ```
 
-    ## [1] 124.302
-    ## [1] 222.374
-    ## [1] 202.446
+    ## [1] 124
+    ## [1] 222
+    ## [1] 202
     ## [1] 90.4
-    ## [1] 67.57
-    ## [1] 132.876
+    ## [1] 67.6
+    ## [1] 133
 
 This is the same as the result obtained from applying the `colMeans()` function to the first six columns of the `fcgrDat` data object:
 
@@ -387,7 +387,7 @@ colMeans( fcgrDat[,1:6] )
 ```
 
     ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 
-    ## 124.302 222.374 202.446  90.400  67.570 132.876
+    ##   124.3   222.4   202.4    90.4    67.6   132.9
 
 In order to use this functionality to automate plot generate, it is useful to turn on a setting that asks us to hit "enter" before each plot is displayed (`par()` is a function to set graphics parameters):
 
@@ -407,7 +407,7 @@ plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
 Other populations
 -----------------
 
-The first 99 samples are all from the CEU population. To examine the data from other populations, you need to select samples relating to that population. The relevant column ranges are lsited in the table in the "Data generation parameters and samples" section of this document.
+The first 99 samples are all from the CEU population. To examine the data from other populations, you need to select samples relating to that population. The relevant column ranges are listed in the table in the "Data generation parameters and samples" section of this document.
 
 For example, to plot the first sample from the YRI population, you could use the command:
 
@@ -452,10 +452,10 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
     ## p-value = 1
     ## alternative hypothesis: true odds ratio is not equal to 1
     ## 95 percent confidence interval:
-    ##  0.04766622 6.29273155
+    ##  0.0477 6.2927
     ## sample estimates:
     ## odds ratio 
-    ##  0.6369091
+    ##      0.637
 
 Lab report
 ----------

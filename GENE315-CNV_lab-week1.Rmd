@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 1"
 author: "Mik Black"
-date: "3 & 4 April 2019"
+date: "1 & 2 April 2020"
 output:
   html_document: default
   github_document: default
@@ -13,17 +13,28 @@ output:
 <!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
 <!-- knitr::purl('GENE315-CNV_lab-week1.Rmd') -->
 
+<!-- NB: check to see if I commented stuff out below in 2020 due -->
+<!--     to the COVID-19 changes (search for "C19") -->
+
+<!-- NB: change due dates at end of document -->
+
 ## Background: copy number variation
 
-Deviation from the diploid copy number in genomic segments (>50 bp) is known as copy number variation (CNV). Copy number variants often encompass genes and are an important but poorly understood source of variation in genomes. In humans copy number variation has been associated with phenotypes such as autoimmune disease and weight. IRGM is a relatively simple 20kb insertion-deletion upstream of the immunity-related GTPase family M gene and is associated with Crohn’s disease (Prescott et al. 2010). FCGR3B (Fc gamma receptor 3B) is within a more complex locus (refer lectures) with copy number typically varying from 0 to 4 within a population (McKinney and Merriman, 2012). It is associated with autoimmune diseases such as rheumatoid arthritis and systemic lupus erythematosus. AMY1 (amylase1) is the most complex locus, with copy number varying from 2 to >15 within a given population. Between populations it correlates with ancestral diet – the higher the starch, the higher the copy number (Perry et al. 2007).
+Deviation from the diploid copy number in genomic segments (>50 bp) is known as copy number variation (CNV). Copy number variants often encompass genes and are an important but poorly understood source of variation in genomes. In humans copy number variation has been associated with phenotypes such as autoimmune disease and weight. IRGM is a relatively simple 20kb insertion-deletion upstream of the immunity-related GTPase family M gene and is associated with Crohn’s disease (Prescott et al. 2010). FCGR3B (Fc gamma receptor 3B) is within a more complex locus (refer lectures) with copy number typically varying from 0 to 4 within a population (McKinney and Merriman, 2012). It is associated with autoimmune diseases such as rheumatoid arthritis and systemic lupus erythematosus.
+
+<!-- AMY1 (amylase1) is the most complex locus, with copy number varying from 2 to >15 within a given population. Between populations it correlates with ancestral diet – the higher the starch, the higher the copy number (Perry et al. 2007). -->
 
 ## Generation of copy number calls from 1000 Genomes data
 
 High-throughput DNA sequencing technologies provide the ability to examine copy number variation on a whole genome scale. When a sample is sequenced it is assigned an average coverage level, which reflects the number of bases sequenced relative to the size of the genome. For example, if 300 million 100bp reads are generated for a 3Gbp genome the average coverage will be 10x (number of reads x read length / genome size = 300,000,000 x 100 / 3,000,000).  Analysis approaches based on read depth use this idea to identify regions that exhibit large deviations away from the expected level of coverage to identify changes in copy number. For example, a region exhibiting 30x coverage in a diploid genome that has been sequenced to a depth of 20x could reflect a gain of one additional copy of that region of DNA. 
 
-In order to generate copy number calls based on read depth, aligned sequence data are required. The 1000 Genomes Project provides such data for the genomes of thousands of individuals from populations around the world. In this part of the lab we will use data from the 1000 Genomes Project to investigate variation in gene copy number at the IRGM, FCGR3B and AMY1 loci.
+In order to generate copy number calls based on read depth, aligned sequence data are required. The 1000 Genomes Project provides such data for the genomes of thousands of individuals from populations around the world. In this part of the lab we will use data from the 1000 Genomes Project to investigate variation in gene copy number at the FCGR3B and IRGM
+<!-- ,  and AMY1  -->
+loci.
 
-Aligned DNA sequence read data will be provided for a subset of the 1000 Genomes sample data for 1Mbp regions around the three loci of interest. At each locus you will use the R software to perform:
+Aligned DNA sequence read data will be provided for a subset of the 1000 Genomes sample data for 1Mbp regions around the two 
+<!-- three -->
+loci of interest. At each locus you will use the R software to perform:
 
  - Generation of read depth information
  - Visualisation of read depth across the region of interest
@@ -45,8 +56,10 @@ Aligned sequence data from the 1000 Genomes Project was obtained from their ftp 
 As mentioned in class, the aligned data for each sample is stored in the BAM format on the ftp server.  One of the nice things about BAM is that you can *index* the data files, which makes it possible to retrieve a subset of the data (e.g., from a particular region of the genome) without having to download the entire data file.
 
 This is an important point, as the data files for a single sample are fairly large 
-(e.g., around 30GB).  For this lab I have downloaded data from regions around the three genes of 
-interest (AMY1A, IRGM and FCGR3B).  For each of the three regions, the data extracted
+(e.g., around 30GB).  For this lab I have downloaded data from regions around the two
+<!-- three  -->
+genes of 
+interest (FCGR3B and IRGM).  For each of these regions, the data extracted
 was only between 3MB & 20MB, making it relatively quick and (somewhat) easy to retrieve 
 data for large numbers of samples.
 
@@ -85,8 +98,9 @@ To do this we can use the _samtools_ application (or the _Rsamtools_ package fro
 We will be performing our R-based analysis using the RStudio application. There are a number of ways to use RStudio for this lab:
 
  - on your own computer, with R and RStudio installed
- - on the lab computers in ACAL 
- - on your own computer, logging into the Student Desktop: https://student.desktop.otago.ac.nz/
+<!-- C19 -->
+<!-- - on the lab computers in ACAL  -->
+ - on your own computer, logging into the Student Desktop:<BR> https://student.desktop.otago.ac.nz/
 
 ## Downloading the data
 
@@ -94,9 +108,11 @@ The data and R files needed for this lab are located on Blackboard in a zip file
 in the " Module 2: Copy Number Variation" folder.  Download this file to the desktop, and unzip it.  
 In R, set your working directory to be the folder that is created when the file is unzipped.
 
-The zip file contains four files that we will use this week:
+The zip file contains three
+<!-- four -->
+files that we will use this week:
 
-* AMY1A-counts.csv - data for the AMY1A region 
+<!-- * AMY1A-counts.csv - data for the AMY1A region  -->
 * FCGR-counts.csv  - data for the FCGR region 
 * IRGM-counts.csv  - data for the IRGM region
 * plotCNV.R        - R function to generate plots of the window counts
@@ -114,13 +130,16 @@ positions as rows, samples as columns).
 
 ## Data generation parameters and samples
 
-The following parameters were used to generate the data for the three regions of interest:
+The following parameters were used to generate the data for the two 
+<!-- three -->
+regions of interest:
 
 Gene region | Chr | Start | End | Length | Window
 ------------|-----|-------|-----|--------|-------
-AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp
 IRGM        | 5   | 150124000 | 150324000 | 200Kbp |  500bp
 FCGR        | 1   | 161300000 | 161800000 | 500Kbp | 1000bp
+
+<!-- AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp -->
 
 The populations for which data were downloaded are:
 
@@ -129,6 +148,8 @@ Population | N (number of samples) | Columns of data set
 CEU |  99 |    1 - 99
 CHB | 103 | 100 - 202
 YRI | 108 | 203 - 310
+
+<BR><BR>
 
 ## IMPORTANT NOTE
 
@@ -330,7 +351,7 @@ plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
 ## Other populations
 
 The first 99 samples are all from the CEU population. To examine the data from other populations, you need to select samples relating to that population.  The relevant
-column ranges are lsited in the table in the "Data generation parameters and samples"
+column ranges are listed in the table in the "Data generation parameters and samples"
 section of this document.
 
 For example, to plot the first sample from the YRI population, you could use the 
@@ -362,7 +383,7 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 
 ## Lab report
 
-The lab report for this module is due on 2nd May (Wednesday stream) or 3th May (Thursday stream).  For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The lab report for this module is due on 22nd April (Wednesday stream) or 23rd April (Thursday stream).  For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 
 ## Week one questions:
