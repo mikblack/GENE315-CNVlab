@@ -466,19 +466,12 @@ prop.table( fcgrTab, 1)</code></pre>
 </div>
 <div id="snp-data" class="section level2">
 <h2>SNP data</h2>
-<p>The file <code>CNcalls.csv</code> contains copy number calls for SNPs near the IRGM and FCGR3B genes. For IRGM the SNP ID is <code>rs13361189</code>, and for FCGR3B the SNP ID is <code>rs117435514</code>. These data are stored in the files <code>IRGM_rs13361189.csv</code> and</p>
-<pre class="fcgr_rs117435514.csv```."><code>
-These data were obtained from the ensembl website.  Have a look at the 1000 Geneomes Project data for SNP ```rs117435514``` by searching for it at
-
-http://www.ensembl.org/Homo_sapiens/
-
-and then clikcing on the &quot;population genetics&quot; link.  This provides data on SNP frequency (and also per-sample genotype) across the populations.  The data from this website was used to create SNP genotype files for the samples we are analysing in this lab.
-
-The data for FCGR can be loaded as follows:
-
-
-```r
-fcgrSNP = read.csv(&#39;FCGR_rs117435514.csv&#39;)</code></pre>
+<p>The file <code>CNcalls.csv</code> contains copy number calls for SNPs near the IRGM and FCGR3B genes. For IRGM the SNP ID is <code>rs13361189</code>, and for FCGR3B the SNP ID is <code>rs117435514</code>. These data are stored in the files <code>IRGM_rs13361189.csv</code> and <code>FCGR_rs117435514.csv</code>.</p>
+<p>These data were obtained from the ensembl website. Have a look at the 1000 Geneomes Project data for SNP <code>rs117435514</code> by searching for it at</p>
+<p><a href="http://www.ensembl.org/Homo_sapiens/" class="uri">http://www.ensembl.org/Homo_sapiens/</a></p>
+<p>and then clicking on the “population genetics” link. This provides data on SNP frequency (and also per-sample genotype) across the populations. The data from this website was used to create SNP genotype files for the samples we are analysing in this lab.</p>
+<p>The data for FCGR can be loaded as follows:</p>
+<pre class="r"><code>fcgrSNP = read.csv(&#39;FCGR_rs117435514.csv&#39;)</code></pre>
 <p>Look at the first six rows:</p>
 <pre class="r"><code>head(fcgrSNP)</code></pre>
 <pre><code>##   X  Sample Population rs117435514
