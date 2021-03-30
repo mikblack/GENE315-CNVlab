@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Mik Black" />
 
-<meta name="date" content="2020-03-30" />
+<meta name="date" content="2021-03-29" />
 
 <title>GENE315 - software installation</title>
 
@@ -270,7 +270,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -332,6 +331,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -343,18 +343,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -377,45 +365,23 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">GENE315 - software installation</h1>
 <h4 class="author">Mik Black</h4>
-<h4 class="date">30 March 2020</h4>
+<h4 class="date">29 March 2021</h4>
 
 </div>
 
 
 <!-- Run line below in R to render multiple documents: -->
 <!-- rmarkdown::render(here::here("bioc461-setup.Rmd"), output_format='all') -->
-<p>In this GENE315 lab module we will be using the R statistical software running in the RStudio application to perform data visualisation and analysis.</p>
-<div id="download-the-data" class="section level2">
-<h2>Download the data</h2>
-<p>The data for this module are available from Blackboard.</p>
-<p>Instructions for downloading the required files are contained in the <code>GENE315-CNV_lab-week1.pdf</code> document in the “Module 2: Copy Number Variation” folder (under “Labs” in the “Course Documents” section).</p>
-</div>
-<div id="r-and-rstudio-on-your-computer-or-student-desktop" class="section level2">
-<h2>R and RStudio on your computer, or Student Desktop?</h2>
-<p>If you have problems getting R and RStudio installed (or accessing them via the Student Desktop), please get in touch with me via email: <code>mik.black@otago.ac.nz</code></p>
-<div id="your-computer" class="section level3">
-<h3>Your computer</h3>
+<p>In this GENE315 lab module we will be using the R statistical software running in the RStudio application to perform data visualisation and analysis. You can use either your own computer for the lab, or you can use the computers in the CAL lab.</p>
 <p>If you are using your own computer for this lab, you will need to have R and RStudio installed. Install or update R <strong>before</strong> you install or update RStudio.</p>
 <p>To install the latest version of R, visit the following website, and download the version for your operating system:</p>
 <p><code>http://cran.stat.auckland.ac.nz</code></p>
-<p>If you are running a version of R earlier than 3.6.1, that is probably okay, but just be aware that older versions of R do sometimes cause problems.</p>
+<p>If you are running a version of R earlier than 4.0, that is probably okay, but just be aware that older versions of R do sometimes cause problems.</p>
 <p>To install RStudio, visit the following website</p>
 <p><code>https://rstudio.com/products/rstudio/download</code></p>
 <p>and download the free version of “RStudio Desktop” for your operating system.</p>
 <p>If you already have RStudio installed, you can upgrade to the latest version by choosing “Check for Updates” from the RStudio “Help” menu.</p>
-</div>
-<div id="student-desktop" class="section level3">
-<h3>Student Desktop</h3>
-<p>If you are unable to install R and RStudio on your own device, then accessing these through the student desktop might be an option. The following link:</p>
-<p><code>https://student.desktop.otago.ac.nz</code></p>
-<p>will open a Windows Desktop on your computer, and you can access RStudio from the Start Menu in the lower left of the screen.</p>
-</div>
-</div>
-<div id="getting-started" class="section level2">
-<h2>Getting started</h2>
 <p><strong>NB: you will be doing your analysis in RStudio, so don’t worry about using the R application (it needs to be installed, but we don’t have to open it) - just open RStudio and use that for all of your work.</strong></p>
-<p>Once you have access to RStudio, you can get started with the work for the lab by downloading the file <code>GENE315-CNV_lab-week1.pdf</code> from Blackboard, and watching the video walkthrough of the lab (access this from the “Echo360 Recordings” button in the “Labs” folder under “Course Documents”)</p>
-</div>
 
 
 
@@ -434,6 +400,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 1"
 author: "Mik Black"
-date: "1 & 2 April 2020"
+date: "31 March & 1 April 2021"
 output:
   html_document: default
   github_document: default
@@ -141,6 +141,7 @@ FCGR        | 1   | 161300000 | 161800000 | 500Kbp | 1000bp
 
 <!-- AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp -->
 
+\pagebreak
 The populations for which data were downloaded are:
 
 Population | N (number of samples) | Columns of data set
@@ -264,6 +265,8 @@ hist( colMeans(fcgrDat), 20, main="FCGR region: mean counts per window",
 
 #### Use the commands you've learned so far to generate a histogram of average read depth across the FCGR region for all samples.
 
+\pagebreak
+
 ## Exploring copy number variation
 
 The file ```plotCNV.R``` contains a function for plotting the count data for a sample 
@@ -379,11 +382,9 @@ which (as you would expect from the data) shows no evidence for a difference in 
 fisher.test( matrix( c(2,18,3,17), 2,2) )
 ```
 
-\pagebreak
-
 ## Lab report
 
-The lab report for this module is due on 22nd April (Wednesday stream) or 23rd April (Thursday stream).  For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The lab report for this module is due at 5pm on 21 April (Wednesday stream) or 22 April (Thursday stream).  For your report, please provide answers to the 9 questions below, and the 6 questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/dicussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 
 ## Week one questions:
