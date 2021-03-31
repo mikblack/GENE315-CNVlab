@@ -105,7 +105,7 @@ We will be performing our R-based analysis using the RStudio application. There 
 ## Downloading the data
 
 The data and R files needed for this lab are located on Blackboard in a zip file
-in the " Module 2: Copy Number Variation" folder.  Download this file to the desktop, and unzip it.  
+in the " Module 2: Analysis of genetic variation in humans " folder.  Download this file to the desktop, and unzip it.  
 In R, set your working directory to be the folder that is created when the file is unzipped.
 
 The zip file contains three
