@@ -1,7 +1,7 @@
 GENE315 CNV lab - week 2
 ================
-Mik Black
-14 & 15 April 2021
+Mik Black & Phil Wilcox
+5 & 6 April 2023
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
 <!-- rmarkdown::render('GENE315-CNV_lab-week2.Rmd', output_format="github_document") -->
@@ -12,18 +12,18 @@ Mik Black
 
 This week we will be doing three things:
 
--   Continuing looking at the count data from last week, focusing on
-    differences between the two loci (IRGM, FCGR) across the three
-    populations (CEU, CHB, YRI).
--   Looking at single nucleotide polymorphism (SNP) data from SNPs near
-    the IRGM and FCGR3B genes.
--   Combining the SNP and CNV data to investigate linkage disequilibrium
-    (LD) in the three populations.
+- Continuing looking at the count data from last week, focusing on
+  differences between the two loci (IRGM, FCGR) across the three
+  populations (CEU, CHB, YRI).
+- Looking at single nucleotide polymorphism (SNP) data from SNPs near
+  the IRGM and FCGR3B genes.
+- Combining the SNP and CNV data to investigate linkage disequilibrium
+  (LD) in the three populations.
 
 This document will walk through some simple analysis in R to acccomplish
 the tasks above.
 
-**REMINDER: FOR YOUR LAB REPORT YOU WILL NEED TO ALTER THE CODE BELOW TO
+**REMINDER: FOR YOUR ASSIGNMENT YOU WILL NEED TO ALTER THE CODE BELOW TO
 PERFORM A SIMILAR ANALYSIS FOR THE IRGM DATA AND THE RELEVANT SNP
 (rs13361189).**
 
@@ -109,7 +109,8 @@ of copy number is consistent across the three populations:
 chisq.test( fcgrTab )
 ```
 
-    ## Warning in chisq.test(fcgrTab): Chi-squared approximation may be incorrect
+    ## Warning in chisq.test(fcgrTab): Chi-squared approximation may be
+    ## incorrect
 
     ## 
     ##  Pearson's Chi-squared test
@@ -317,20 +318,20 @@ particularly well, the association is highly statistically significant
 (i.e., it is very unlikely that we would see a relationship this strong
 by chance).
 
-## Lab report
+## Assignment
 
-The lab report for this module is due at 5pm on 21 April (Wednesday
-stream) or 22 April (Thursday stream). For your report, please provide
-answers to the **9 questions from the final page of the week one
-handout, and the 6 questions below**. When answering each question,
-please provide the R code used to generate the output (if required), the
-output itself, and any comments/dicussion needed to fully answer the
-question. Please keep the code, output and comments together for each
-question (similar to how the lab handouts are laid out).
+The assignment for this module is due at 5pm on 26 April (Wednesday
+stream) or 27 April (Thursday stream). For your document, please provide
+answers to the questions below, and also the questions at the end of the
+week 2 and week 3 handouts. When answering each question, please provide
+the R code used to generate the output (if required), the output itself,
+and any comments/discussion needed to fully answer the question. Please
+keep the code, output and comments together for each question (similar
+to how the lab handouts are laid out).
 
 ### Week two questions:
 
-Please include the following details in your lab report:
+Please include the following details in your document:
 
 1.  Load the IRGM copy number calls, and generate a table, a proportion
     table, and a barplot for these calls across the three populations.

@@ -1,20 +1,14 @@
 GENE315 CNV lab - week 1
 ================
-Mik Black
-31 March & 1 April 2021
+Mik Black & Phil Wilcox
+29 & 30 March 2023
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
-
 <!-- rmarkdown::render('GENE315-CNV_lab-week1.Rmd', output_format="github_document") -->
-
 <!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
-
 <!-- knitr::purl('GENE315-CNV_lab-week1.Rmd') -->
-
 <!-- NB: check to see if I commented stuff out below in 2020 due -->
-
 <!--     to the COVID-19 changes (search for "C19") -->
-
 <!-- NB: change due dates at end of document -->
 
 ## Background: copy number variation
@@ -60,9 +54,9 @@ Aligned DNA sequence read data will be provided for a subset of the 1000
 Genomes sample data for 1Mbp regions around the two <!-- three --> loci
 of interest. At each locus you will use the R software to perform:
 
-  - Generation of read depth information
-  - Visualisation of read depth across the region of interest
-  - Segmentation analysis to identify regions of altered copy number
+- Generation of read depth information
+- Visualisation of read depth across the region of interest
+- Segmentation analysis to identify regions of altered copy number
 
 Below is an example of the R code required to perform an analysis of CNV
 at the FCGR locus - we will work through this code in the lab. You will
@@ -77,9 +71,9 @@ sequencing data. The link for the 1000 Genomes Project is:
 
 <http://www.internationalgenome.org/>
 
-The first couple of questions for your lab report relate to the 1000
+The first couple of questions for your assignment relate to the 1000
 Genomes Project - you should be able to find the answers to those
-questions by reading the website.
+questions by having a look around their website.
 
 Aligned sequence data from the 1000 Genomes Project was obtained from
 their ftp download site. For this lab we are using a relatively small
@@ -142,15 +136,15 @@ process for you.
 We will be performing our R-based analysis using the RStudio
 application. There are a number of ways to use RStudio for this lab:
 
-  - on your own computer, with R and RStudio installed <!-- C19 -->
-    <!-- - on the lab computers in ACAL  -->
-  - on your own computer, logging into the Student Desktop:<BR>
-    <https://student.desktop.otago.ac.nz/>
+- on your own computer, with R and RStudio installed <!-- C19 -->
+  <!-- - on the lab computers in ACAL  -->
+- on your own computer, logging into the Student Desktop:<BR>
+  <https://student.desktop.otago.ac.nz/>
 
 ## Downloading the data
 
 The data and R files needed for this lab are located on Blackboard in a
-zip file in the " Module 2: Analysis of genetic variation in humans "
+zip file in the “Module 2: Analysis of genetic variation in humans”
 folder. Download this file to the desktop, and unzip it.  
 In R, set your working directory to be the folder that is created when
 the file is unzipped.
@@ -160,15 +154,15 @@ week:
 
 <!-- * AMY1A-counts.csv - data for the AMY1A region  -->
 
-  - FCGR-counts.csv - data for the FCGR region
-  - IRGM-counts.csv - data for the IRGM region
-  - plotCNV.R - R function to generate plots of the window counts
+- FCGR-counts.csv - data for the FCGR region
+- IRGM-counts.csv - data for the IRGM region
+- plotCNV.R - R function to generate plots of the window counts
 
 We’ll use the other three files next week:
 
-  - CNcalls.csv
-  - IRGM\_rs13361189.csv
-  - FCGR\_rs117435514.csv
+- CNcalls.csv
+- IRGM_rs13361189.csv
+- FCGR_rs117435514.csv
 
 Each of the data files contains per window count data across the region
 of interest, for a collection of samples from the 1000 Genomes Project.
@@ -181,16 +175,15 @@ The following parameters were used to generate the data for the two
 <!-- three --> regions of interest:
 
 | Gene region | Chr | Start     | End       | Length | Window |
-| ----------- | --- | --------- | --------- | ------ | ------ |
+|-------------|-----|-----------|-----------|--------|--------|
 | IRGM        | 5   | 150124000 | 150324000 | 200Kbp | 500bp  |
 | FCGR        | 1   | 161300000 | 161800000 | 500Kbp | 1000bp |
 
 <!-- AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp -->
-
 The populations for which data were downloaded are:
 
 | Population | N (number of samples) | Columns of data set |
-| ---------- | --------------------- | ------------------- |
+|------------|-----------------------|---------------------|
 | CEU        | 99                    | 1 - 99              |
 | CHB        | 103                   | 100 - 202           |
 | YRI        | 108                   | 203 - 310           |
@@ -199,11 +192,11 @@ The populations for which data were downloaded are:
 
 ## IMPORTANT NOTE
 
-The analyses below relate to the data from the FCGR locus. For your lab
-report, you need to perform a similar analysis for IRGM. The code below
-will be very helpful - you will just need to replace the FCGR data with
-the data for IRGM. **MAKE SURE YOU SAVE YOUR R COMMANDS IN A FILE. THIS
-WILL ALLOW YOU TO EASILY RERUN THEM (AND/OR ALTER THEM FOR THE IRGM
+The analyses below relate to the data from the FCGR locus. For your
+assignment, you need to perform a similar analysis for IRGM. The code
+below will be very helpful - you will just need to replace the FCGR data
+with the data for IRGM. **MAKE SURE YOU SAVE YOUR R COMMANDS IN A FILE.
+THIS WILL ALLOW YOU TO EASILY RERUN THEM (AND/OR ALTER THEM FOR THE IRGM
 DATA) LATER ON. ASK ME HOW TO DO THIS IF YOU ARE NOT SURE**.
 
 ## Getting the data into R
@@ -239,8 +232,8 @@ dim(fcgrDat)
 rownames(fcgrDat)[1:10]
 ```
 
-    ##  [1] "161301000" "161302000" "161303000" "161304000" "161305000" "161306000" "161307000" "161308000"
-    ##  [9] "161309000" "161310000"
+    ##  [1] "161301000" "161302000" "161303000" "161304000" "161305000"
+    ##  [6] "161306000" "161307000" "161308000" "161309000" "161310000"
 
 ``` r
 ## First 5 column names
@@ -287,28 +280,38 @@ fcgrDat[1:10,"NA06984"]
 fcgrDat[,"NA06984"]
 ```
 
-    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101 113 104  96 130 114 143 121
-    ##  [24] 144 110 126 119 122 111 140  94  98 117 149 142 127 109  94 124 137 100 106  93 126 139 120
-    ##  [47] 121 125 119 131  95 150 155 127 118  91 138 119 106  81  93 105 144 135 113 105  83 134 127
-    ##  [70] 128 124 135 103 111 124 102 109  97 109 117 146 125  94 137 117  73  47 114  95 130 101 103
-    ##  [93] 104  41 159  87 107 119 111  97 121  64 108 112 131 121 105 108 161  68  46 116 170 238 351
-    ## [116] 393 291  41  57 147 189 337 327 373 167  44 127 139 324 251 362 224  53  96 140 197 313 408
-    ## [139] 317 135  44 203 113 108 108 161 112 145  83 124 113 137 148 168 123 128 110 134  99 156 143
-    ## [162] 142 129 136 116 125 136 116 145 131 165 126 141 118 113 123 119 128 126  94 113 110 145 129
-    ## [185] 152 137 115 152 148 137 115 149 115  85  44  91 110 126 127 132 107 109 121 132 124 120 178
-    ## [208] 154 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88 157 137  92 156 128 127
-    ## [231] 129 117 119 139 135  85 131 136  95 140 165 127 142 106 163 132 123 114 137 102 121 127 121
-    ## [254] 126 106 108 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119 129  92 120  68
-    ## [277]  79  85  99 106 125 118 103 111 144 117  80  74 139 102 100 107 110 105  99 120 125 129  77
-    ## [300]  89 115  81  66 104  98  88 106 121 102 114 106 105 135 114 118 117 108 140 114 154 100  90
-    ## [323]  52  99 102 101 106 168 151 122 137 156 110 127 103 124 117  97  98  99 115 142  97 119  65
-    ## [346]  91 113 133 154 105 143 141 140 115 117 116 143  94 122 103 112 121 115  90 175 130 152 113
-    ## [369] 101 126 158 116 148 118 141 131 111 125 140 118 124 112 110 132 154 134 137 165 118 117 100
-    ## [392] 128 146 102 110 108  38  93 110 128 117 133 100 106 124 114 116 118 127 137 124 100 122 141
-    ## [415] 120 111 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130 127 137 115 125 129
-    ## [438] 108 117 105 142 138 116 133 108 118 111 118 103 136 108 103 120 120 111 111 114 117 130 116
-    ## [461] 143 138 125 127 120 121 114 134  75 138 136 109 141  99 128 145 148 144 126 107 112 145 123
-    ## [484] 122 110 111 124 142 145 120  86 108 120 153 110 111 129 116 152 104
+    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101
+    ##  [17] 113 104  96 130 114 143 121 144 110 126 119 122 111 140  94  98
+    ##  [33] 117 149 142 127 109  94 124 137 100 106  93 126 139 120 121 125
+    ##  [49] 119 131  95 150 155 127 118  91 138 119 106  81  93 105 144 135
+    ##  [65] 113 105  83 134 127 128 124 135 103 111 124 102 109  97 109 117
+    ##  [81] 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87
+    ##  [97] 107 119 111  97 121  64 108 112 131 121 105 108 161  68  46 116
+    ## [113] 170 238 351 393 291  41  57 147 189 337 327 373 167  44 127 139
+    ## [129] 324 251 362 224  53  96 140 197 313 408 317 135  44 203 113 108
+    ## [145] 108 161 112 145  83 124 113 137 148 168 123 128 110 134  99 156
+    ## [161] 143 142 129 136 116 125 136 116 145 131 165 126 141 118 113 123
+    ## [177] 119 128 126  94 113 110 145 129 152 137 115 152 148 137 115 149
+    ## [193] 115  85  44  91 110 126 127 132 107 109 121 132 124 120 178 154
+    ## [209] 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88
+    ## [225] 157 137  92 156 128 127 129 117 119 139 135  85 131 136  95 140
+    ## [241] 165 127 142 106 163 132 123 114 137 102 121 127 121 126 106 108
+    ## [257] 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119
+    ## [273] 129  92 120  68  79  85  99 106 125 118 103 111 144 117  80  74
+    ## [289] 139 102 100 107 110 105  99 120 125 129  77  89 115  81  66 104
+    ## [305]  98  88 106 121 102 114 106 105 135 114 118 117 108 140 114 154
+    ## [321] 100  90  52  99 102 101 106 168 151 122 137 156 110 127 103 124
+    ## [337] 117  97  98  99 115 142  97 119  65  91 113 133 154 105 143 141
+    ## [353] 140 115 117 116 143  94 122 103 112 121 115  90 175 130 152 113
+    ## [369] 101 126 158 116 148 118 141 131 111 125 140 118 124 112 110 132
+    ## [385] 154 134 137 165 118 117 100 128 146 102 110 108  38  93 110 128
+    ## [401] 117 133 100 106 124 114 116 118 127 137 124 100 122 141 120 111
+    ## [417] 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130
+    ## [433] 127 137 115 125 129 108 117 105 142 138 116 133 108 118 111 118
+    ## [449] 103 136 108 103 120 120 111 111 114 117 130 116 143 138 125 127
+    ## [465] 120 121 114 134  75 138 136 109 141  99 128 145 148 144 126 107
+    ## [481] 112 145 123 122 110 111 124 142 145 120  86 108 120 153 110 111
+    ## [497] 129 116 152 104
 
 We can use this approach to calculate some basic statistics for the data
 from this sample:
@@ -348,7 +351,7 @@ observations (such as changes in copy number):
 100 * sum( fcgrDat[,"NA06984"] ) / 500000
 ```
 
-    ## [1] 12.4302
+    ## [1] 12.4
 
 So the average read depth across this region for sample NA6984 is 12.43
 (i.e., on average, each base in this region was read 12.43 times in this
@@ -372,8 +375,10 @@ column
 colSums( fcgrDat[,1:10] )
 ```
 
-    ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 NA07037 NA07048 NA07051 NA07056 
-    ##   62151  111187  101223   45200   33785   66438   50123   38034   32550   38135
+    ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 NA07037 NA07048 
+    ##   62151  111187  101223   45200   33785   66438   50123   38034 
+    ## NA07051 NA07056 
+    ##   32550   38135
 
 We can examine the distribution of the mean per-window counts for each
 sample by plotting a histogram:
@@ -485,12 +490,12 @@ for(i in 1:6){
 }
 ```
 
-    ## [1] 124.302
-    ## [1] 222.374
-    ## [1] 202.446
+    ## [1] 124
+    ## [1] 222
+    ## [1] 202
     ## [1] 90.4
-    ## [1] 67.57
-    ## [1] 132.876
+    ## [1] 67.6
+    ## [1] 133
 
 This is the same as the result obtained from applying the `colMeans()`
 function to the first six columns of the `fcgrDat` data object:
@@ -500,7 +505,7 @@ colMeans( fcgrDat[,1:6] )
 ```
 
     ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 
-    ## 124.302 222.374 202.446  90.400  67.570 132.876
+    ##   124.3   222.4   202.4    90.4    67.6   132.9
 
 In order to use this functionality to automate plot generate, it is
 useful to turn on a setting that asks us to hit “enter” before each plot
@@ -510,7 +515,7 @@ is displayed (`par()` is a function to set graphics parameters):
 par(ask=TRUE)
 ```
 
-#### Use the commands you have learned so far to generate plots of the FCGR region for the first 20 samples (or all of them if you feel like hitting “enter” a lot\!).
+#### Use the commands you have learned so far to generate plots of the FCGR region for the first 20 samples (or all of them if you feel like hitting “enter” a lot!).
 
 #### HINT: the following code might help you:
 
@@ -581,25 +586,25 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
     ## p-value = 1
     ## alternative hypothesis: true odds ratio is not equal to 1
     ## 95 percent confidence interval:
-    ##  0.04766622 6.29273155
+    ##  0.0477 6.2927
     ## sample estimates:
     ## odds ratio 
-    ##  0.6369091
+    ##      0.637
 
-## Lab report
+## Assignment
 
-The lab report for this module is due at 5pm on 21 April (Wednesday
-stream) or 22 April (Thursday stream). For your report, please provide
-answers to the 9 questions below, and the 6 questions at the end of the
-week 2 handout. When answering each question, please provide the R code
-used to generate the output (if required), the output itself, and any
-comments/dicussion needed to fully answer the question. Please keep the
-code, output and comments together for each question (similar to how the
-lab handouts are laid out).
+The assignment for this module is due at 5pm on 26 April (Wednesday
+stream) or 27 April (Thursday stream). For your document, please provide
+answers to the questions below, and also the questions at the end of the
+week 2 and week 3 handouts. When answering each question, please provide
+the R code used to generate the output (if required), the output itself,
+and any comments/discussion needed to fully answer the question. Please
+keep the code, output and comments together for each question (similar
+to how the lab handouts are laid out).
 
 ## Week one questions:
 
-Please include the following details in your lab report:
+Please include the following details in your document:
 
 1.  The data being used in this lab were generated as part of the 1000
     Genomes Project. Briefly describe what sort of technology has
