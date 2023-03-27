@@ -1,6 +1,6 @@
 ---
 title: "GENE315 CNV lab - week 1"
-author: "Mik Black & Phil Wilcox"
+author: "Mik Black"
 date: "29 & 30 March 2023"
 output:
   html_document: default
@@ -98,9 +98,7 @@ To do this we can use the _samtools_ application (or the _Rsamtools_ package fro
 We will be performing our R-based analysis using the RStudio application. There are a number of ways to use RStudio for this lab:
 
  - on your own computer, with R and RStudio installed
-<!-- C19 -->
-<!-- - on the lab computers in ACAL  -->
- - on your own computer, logging into the Student Desktop:<BR> https://student.desktop.otago.ac.nz/
+ - on the lab computers in ACAL 
 
 ## Downloading the data
 
@@ -159,14 +157,20 @@ perform a similar analysis for IRGM.  The code below will be very helpful - you 
 replace the FCGR data with the data for IRGM.  __MAKE SURE YOU SAVE YOUR R COMMANDS IN A FILE. THIS 
 WILL ALLOW YOU TO EASILY RERUN THEM (AND/OR ALTER THEM FOR THE IRGM DATA) LATER ON. ASK ME HOW TO DO THIS IF YOU ARE NOT SURE__.
 
+Note that a Markdown version of this PDF is available at:
+
+https://github.com/mikblack/GENE315-CNVlab/blob/master/GENE315-CNV_lab-week1.md
+
+You might find it easier to view the code and output in a web browser, rather than a PDF.
+
 ## Getting the data into R
 
 In order to read the data into R, the ```read.csv()``` function can be used.  The following code reads the data for the FCGR region into an object called ```fcgrDat```.
-The ```row.names=1``` setting tells the command that the row names for the data
+The ```row.names = 1``` setting tells the command that the row names for the data
 set can be found in the first column that is read in:
 
 ```{r}
-fcgrDat = read.csv('FCGR-counts.csv', row.names=1)
+fcgrDat = read.csv('FCGR-counts.csv', row.names = 1)
 ```
 
 We can get some information about the ```fcgrDat``` object as follows:
@@ -312,7 +316,7 @@ y axis (this only works for the FCGR region):
 plotCNV( fcgrDat, "NA06984", "FCGR", truncate=TRUE)
 ```
 
-In order to create plots for multiple samples, we can use a "for loop".  In the example below the vaiable ```i``` takes the values 1,2,...,6 through each iteration through the loop, and prints the value of ```i``` each time:
+In order to create plots for multiple samples, we can use a "for loop".  In the example below the variable ```i``` takes the values 1,2,...,6 through each iteration through the loop, and prints the value of ```i``` each time:
 
 ```{r}
 for(i in 1:6){
@@ -320,7 +324,7 @@ for(i in 1:6){
 }
 ```
 
-We can use this to automate data processing - the following exaple calculates the
+We can use this to automate data processing - the following example calculates the
 mean for each of the first 6 samples:
 
 ```{r}

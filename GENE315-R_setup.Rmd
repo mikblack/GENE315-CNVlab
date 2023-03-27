@@ -1,7 +1,7 @@
 ---
 title: "GENE315 - software installation"
 author: "Mik Black"
-date: "29 March 2021"
+date: "28 March 2023"
 output: 
   html_document: default
   github_document: default
@@ -21,17 +21,13 @@ application to perform data visualisation and analysis. You can use either your 
 
 If you are using your own computer for this lab, you will need to have R and RStudio installed.  Install or update R **before** you install or update RStudio.
 
-To install the latest version of R, visit the following website, and download the version for your operating system:
-
-`http://cran.stat.auckland.ac.nz`
-
 If you are running a version of R earlier than 4.0, that is probably okay, but just be aware that older versions of R do sometimes cause problems.
 
-To install RStudio, visit the following website
+To get both R and RStudio installed, follow the instructions here:
 
-`https://rstudio.com/products/rstudio/download`
+`https://posit.co/download/rstudio-desktop/`
 
-and download the free version of "RStudio Desktop" for your operating system.
+First install R by clicking the "Download and Install R" button, and then install RStudio by clicking the "Download and Install RStudio" button.
 
 If you already have RStudio installed, you can upgrade to the latest version by choosing "Check for Updates" from the RStudio "Help" menu. 
 

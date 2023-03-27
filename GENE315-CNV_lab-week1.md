@@ -1,6 +1,6 @@
 GENE315 CNV lab - week 1
 ================
-Mik Black & Phil Wilcox
+Mik Black
 29 & 30 March 2023
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
@@ -136,10 +136,8 @@ process for you.
 We will be performing our R-based analysis using the RStudio
 application. There are a number of ways to use RStudio for this lab:
 
-- on your own computer, with R and RStudio installed <!-- C19 -->
-  <!-- - on the lab computers in ACAL  -->
-- on your own computer, logging into the Student Desktop:<BR>
-  <https://student.desktop.otago.ac.nz/>
+- on your own computer, with R and RStudio installed
+- on the lab computers in ACAL
 
 ## Downloading the data
 
@@ -199,16 +197,23 @@ with the data for IRGM. **MAKE SURE YOU SAVE YOUR R COMMANDS IN A FILE.
 THIS WILL ALLOW YOU TO EASILY RERUN THEM (AND/OR ALTER THEM FOR THE IRGM
 DATA) LATER ON. ASK ME HOW TO DO THIS IF YOU ARE NOT SURE**.
 
+Note that a Markdown version of this PDF is available at:
+
+<https://github.com/mikblack/GENE315-CNVlab/blob/master/GENE315-CNV_lab-week1.md>
+
+You might find it easier to view the code and output in a web browser,
+rather than a PDF.
+
 ## Getting the data into R
 
 In order to read the data into R, the `read.csv()` function can be used.
 The following code reads the data for the FCGR region into an object
-called `fcgrDat`. The `row.names=1` setting tells the command that the
+called `fcgrDat`. The `row.names = 1` setting tells the command that the
 row names for the data set can be found in the first column that is read
 in:
 
 ``` r
-fcgrDat = read.csv('FCGR-counts.csv', row.names=1)
+fcgrDat = read.csv('FCGR-counts.csv', row.names = 1)
 ```
 
 We can get some information about the `fcgrDat` object as follows:
@@ -232,8 +237,8 @@ dim(fcgrDat)
 rownames(fcgrDat)[1:10]
 ```
 
-    ##  [1] "161301000" "161302000" "161303000" "161304000" "161305000"
-    ##  [6] "161306000" "161307000" "161308000" "161309000" "161310000"
+    ##  [1] "161301000" "161302000" "161303000" "161304000" "161305000" "161306000" "161307000" "161308000"
+    ##  [9] "161309000" "161310000"
 
 ``` r
 ## First 5 column names
@@ -280,38 +285,26 @@ fcgrDat[1:10,"NA06984"]
 fcgrDat[,"NA06984"]
 ```
 
-    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101
-    ##  [17] 113 104  96 130 114 143 121 144 110 126 119 122 111 140  94  98
-    ##  [33] 117 149 142 127 109  94 124 137 100 106  93 126 139 120 121 125
-    ##  [49] 119 131  95 150 155 127 118  91 138 119 106  81  93 105 144 135
-    ##  [65] 113 105  83 134 127 128 124 135 103 111 124 102 109  97 109 117
-    ##  [81] 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87
-    ##  [97] 107 119 111  97 121  64 108 112 131 121 105 108 161  68  46 116
-    ## [113] 170 238 351 393 291  41  57 147 189 337 327 373 167  44 127 139
-    ## [129] 324 251 362 224  53  96 140 197 313 408 317 135  44 203 113 108
-    ## [145] 108 161 112 145  83 124 113 137 148 168 123 128 110 134  99 156
-    ## [161] 143 142 129 136 116 125 136 116 145 131 165 126 141 118 113 123
-    ## [177] 119 128 126  94 113 110 145 129 152 137 115 152 148 137 115 149
-    ## [193] 115  85  44  91 110 126 127 132 107 109 121 132 124 120 178 154
-    ## [209] 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88
-    ## [225] 157 137  92 156 128 127 129 117 119 139 135  85 131 136  95 140
-    ## [241] 165 127 142 106 163 132 123 114 137 102 121 127 121 126 106 108
-    ## [257] 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119
-    ## [273] 129  92 120  68  79  85  99 106 125 118 103 111 144 117  80  74
-    ## [289] 139 102 100 107 110 105  99 120 125 129  77  89 115  81  66 104
-    ## [305]  98  88 106 121 102 114 106 105 135 114 118 117 108 140 114 154
-    ## [321] 100  90  52  99 102 101 106 168 151 122 137 156 110 127 103 124
-    ## [337] 117  97  98  99 115 142  97 119  65  91 113 133 154 105 143 141
-    ## [353] 140 115 117 116 143  94 122 103 112 121 115  90 175 130 152 113
-    ## [369] 101 126 158 116 148 118 141 131 111 125 140 118 124 112 110 132
-    ## [385] 154 134 137 165 118 117 100 128 146 102 110 108  38  93 110 128
-    ## [401] 117 133 100 106 124 114 116 118 127 137 124 100 122 141 120 111
-    ## [417] 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130
-    ## [433] 127 137 115 125 129 108 117 105 142 138 116 133 108 118 111 118
-    ## [449] 103 136 108 103 120 120 111 111 114 117 130 116 143 138 125 127
-    ## [465] 120 121 114 134  75 138 136 109 141  99 128 145 148 144 126 107
-    ## [481] 112 145 123 122 110 111 124 142 145 120  86 108 120 153 110 111
-    ## [497] 129 116 152 104
+    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101 113 104  96 130 114 143 121 144 110
+    ##  [26] 126 119 122 111 140  94  98 117 149 142 127 109  94 124 137 100 106  93 126 139 120 121 125 119 131
+    ##  [51]  95 150 155 127 118  91 138 119 106  81  93 105 144 135 113 105  83 134 127 128 124 135 103 111 124
+    ##  [76] 102 109  97 109 117 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87 107 119 111  97
+    ## [101] 121  64 108 112 131 121 105 108 161  68  46 116 170 238 351 393 291  41  57 147 189 337 327 373 167
+    ## [126]  44 127 139 324 251 362 224  53  96 140 197 313 408 317 135  44 203 113 108 108 161 112 145  83 124
+    ## [151] 113 137 148 168 123 128 110 134  99 156 143 142 129 136 116 125 136 116 145 131 165 126 141 118 113
+    ## [176] 123 119 128 126  94 113 110 145 129 152 137 115 152 148 137 115 149 115  85  44  91 110 126 127 132
+    ## [201] 107 109 121 132 124 120 178 154 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88 157
+    ## [226] 137  92 156 128 127 129 117 119 139 135  85 131 136  95 140 165 127 142 106 163 132 123 114 137 102
+    ## [251] 121 127 121 126 106 108 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119 129  92 120
+    ## [276]  68  79  85  99 106 125 118 103 111 144 117  80  74 139 102 100 107 110 105  99 120 125 129  77  89
+    ## [301] 115  81  66 104  98  88 106 121 102 114 106 105 135 114 118 117 108 140 114 154 100  90  52  99 102
+    ## [326] 101 106 168 151 122 137 156 110 127 103 124 117  97  98  99 115 142  97 119  65  91 113 133 154 105
+    ## [351] 143 141 140 115 117 116 143  94 122 103 112 121 115  90 175 130 152 113 101 126 158 116 148 118 141
+    ## [376] 131 111 125 140 118 124 112 110 132 154 134 137 165 118 117 100 128 146 102 110 108  38  93 110 128
+    ## [401] 117 133 100 106 124 114 116 118 127 137 124 100 122 141 120 111 115 119 111 122 106 128 112 118 118
+    ## [426] 117 103 141 110 100 118 130 127 137 115 125 129 108 117 105 142 138 116 133 108 118 111 118 103 136
+    ## [451] 108 103 120 120 111 111 114 117 130 116 143 138 125 127 120 121 114 134  75 138 136 109 141  99 128
+    ## [476] 145 148 144 126 107 112 145 123 122 110 111 124 142 145 120  86 108 120 153 110 111 129 116 152 104
 
 We can use this approach to calculate some basic statistics for the data
 from this sample:
@@ -375,10 +368,8 @@ column
 colSums( fcgrDat[,1:10] )
 ```
 
-    ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 NA07037 NA07048 
-    ##   62151  111187  101223   45200   33785   66438   50123   38034 
-    ## NA07051 NA07056 
-    ##   32550   38135
+    ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 NA07037 NA07048 NA07051 NA07056 
+    ##   62151  111187  101223   45200   33785   66438   50123   38034   32550   38135
 
 We can examine the distribution of the mean per-window counts for each
 sample by plotting a histogram:
@@ -465,7 +456,7 @@ plotCNV( fcgrDat, "NA06984", "FCGR", truncate=TRUE)
 ![](GENE315-CNV_lab-week1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 In order to create plots for multiple samples, we can use a “for loop”.
-In the example below the vaiable `i` takes the values 1,2,…,6 through
+In the example below the variable `i` takes the values 1,2,…,6 through
 each iteration through the loop, and prints the value of `i` each time:
 
 ``` r
@@ -481,7 +472,7 @@ for(i in 1:6){
     ## [1] 5
     ## [1] 6
 
-We can use this to automate data processing - the following exaple
+We can use this to automate data processing - the following example
 calculates the mean for each of the first 6 samples:
 
 ``` r
