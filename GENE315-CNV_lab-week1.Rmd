@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 1"
 author: "Mik Black & Phil Wilcox"
-date: "30 & 31 March 2022"
+date: "29 & 30 March 2023"
 output:
   html_document: default
   github_document: default
@@ -49,7 +49,7 @@ from the 1000 Genomes Project, using publicly available high-throughput sequenci
 
 http://www.internationalgenome.org/
 
-The first couple of questions for your lab report relate to the 1000 Genomes Project - you should be able to find the answers to those questions by having a look around their website.
+The first couple of questions for your assignment relate to the 1000 Genomes Project - you should be able to find the answers to those questions by having a look around their website.
 
 Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site. For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.
 
@@ -105,7 +105,7 @@ We will be performing our R-based analysis using the RStudio application. There 
 ## Downloading the data
 
 The data and R files needed for this lab are located on Blackboard in a zip file
-in the " Module 2: Analysis of genetic variation in humans " folder.  Download this file to the desktop, and unzip it.  
+in the "Module 2: Analysis of genetic variation in humans" folder.  Download this file to the desktop, and unzip it.  
 In R, set your working directory to be the folder that is created when the file is unzipped.
 
 The zip file contains three
@@ -154,7 +154,7 @@ YRI | 108 | 203 - 310
 
 ## IMPORTANT NOTE
 
-The analyses below relate to the data from the FCGR locus.  For your lab report, you need to 
+The analyses below relate to the data from the FCGR locus.  For your assignment, you need to 
 perform a similar analysis for IRGM.  The code below will be very helpful - you will just need to 
 replace the FCGR data with the data for IRGM.  __MAKE SURE YOU SAVE YOUR R COMMANDS IN A FILE. THIS 
 WILL ALLOW YOU TO EASILY RERUN THEM (AND/OR ALTER THEM FOR THE IRGM DATA) LATER ON. ASK ME HOW TO DO THIS IF YOU ARE NOT SURE__.
@@ -382,14 +382,14 @@ which (as you would expect from the data) shows no evidence for a difference in 
 fisher.test( matrix( c(2,18,3,17), 2,2) )
 ```
 
-## Lab report
+## Assignment
 
-The lab report for this module is due at 5pm on 27 April (Wednesday stream) or 28 April (Thursday stream).  For your report, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The assignment for this module is due at 5pm on 26 April (Wednesday stream) or 27 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 
 ## Week one questions:
 
-Please include the following details in your lab report:
+Please include the following details in your document:
 
 1. The data being used in this lab were generated as part of the 1000 Genomes Project. Briefly describe what sort of technology has produced these data, and how we are using this information to examine gene copy number.
 
