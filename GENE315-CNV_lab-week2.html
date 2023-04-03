@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Mik Black &amp; Phil Wilcox" />
+<meta name="author" content="Mik Black" />
 
 
 <title>GENE315 CNV lab - week 2</title>
@@ -350,7 +350,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">GENE315 CNV lab - week 2</h1>
-<h4 class="author">Mik Black &amp; Phil Wilcox</h4>
+<h4 class="author">Mik Black</h4>
 <h4 class="date">5 &amp; 6 April 2023</h4>
 
 </div>
@@ -373,7 +373,10 @@ the IRGM and FCGR3B genes.</li>
 (LD) in the three populations.</li>
 </ul>
 <p>This document will walk through some simple analysis in R to
-acccomplish the tasks above.</p>
+accomplish the tasks above. There is also a markdown version of this
+document online which can be viewed in a browser (makes copying and
+pasting code easier):</p>
+<p><a href="https://github.com/mikblack/GENE315-CNVlab/blob/master/GENE315-CNV_lab-week2.md" class="uri">https://github.com/mikblack/GENE315-CNVlab/blob/master/GENE315-CNV_lab-week2.md</a></p>
 <p><strong>REMINDER: FOR YOUR ASSIGNMENT YOU WILL NEED TO ALTER THE CODE
 BELOW TO PERFORM A SIMILAR ANALYSIS FOR THE IRGM DATA AND THE RELEVANT
 SNP (rs13361189).</strong></p>
@@ -384,18 +387,21 @@ SNP (rs13361189).</strong></p>
 <pre class="r"><code>fcgrDat = read.csv(&#39;FCGR-counts.csv&#39;, row.names=1)</code></pre>
 <p>One of the tasks last week was to use the commands you had learned to
 loop through the first 20 plots of the FCGR data for the CEU population.
-Hopefully your code looked something like this:</p>
+Hopefully your code looked something like this (if not, this should give
+you a pretty good hint of what your code <em>should</em> look like):</p>
 <pre class="r"><code>source(&#39;plotCNV.R&#39;)
 par(ask=T)
 for(i in 1:20){
   plotCNV( fcgrDat, colnames(fcgrDat)[i], &quot;FCGR&quot;, truncate=TRUE)
-  abline(h = median(fcgrDat[,i]),col=&#39;blue&#39;)
-  abline(h = 1.5*median(fcgrDat[,i]),col=&#39;blue&#39;,lty=2)
-  abline(h = 0.5*median(fcgrDat[,i]),col=&#39;blue&#39;,lty=2)
+  abline(h = median(fcgrDat[,i]), col=&#39;blue&#39;)
+  abline(h = 1.5*median(fcgrDat[,i]), col=&#39;blue&#39;, lty=2)
+  abline(h = 0.5*median(fcgrDat[,i]), col=&#39;blue&#39;, lty=2)
 }</code></pre>
-<p>Use this code to examine the FCGR region for the first 20 samples in
-the CEU population. Which samples appear to exhibit CNV (i.e., do not
-have CN=2) for the FCGR3B gene (marked as “3B” on the plot)?</p>
+<p>One of your tasks last week was to use this code to examine the FCGR
+region for the first 20 samples in the CEU population.<br />
+The goal was to identify samples that exhibit CNV (i.e., do not have
+CN=2) for the FCGR3B gene (marked as “3B” on the plot).</p>
+<p>This week we are looking at copy number is ALL the samples!</p>
 </div>
 <div id="copy-number-calls" class="section level2">
 <h2>Copy number calls</h2>

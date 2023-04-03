@@ -1,6 +1,6 @@
 ---
 title: "GENE315 CNV lab - week 2"
-author: "Mik Black & Phil Wilcox"
+author: "Mik Black"
 date: "5 & 6 April 2023"
 output:
   html_document: default
@@ -21,7 +21,9 @@ This week we will be doing three things:
 * Looking at single nucleotide polymorphism (SNP) data from SNPs near the IRGM and FCGR3B genes.
 * Combining the SNP and CNV data to investigate linkage disequilibrium (LD) in the three populations.
 
-This document will walk through some simple analysis in R to acccomplish the tasks above.
+This document will walk through some simple analysis in R to accomplish the tasks above.  There is also a markdown version of this document online which can be viewed in a browser (makes copying and pasting code easier):
+
+https://github.com/mikblack/GENE315-CNVlab/blob/master/GENE315-CNV_lab-week2.md
 
 __REMINDER: FOR YOUR ASSIGNMENT YOU WILL NEED TO ALTER THE CODE BELOW TO PERFORM A SIMILAR ANALYSIS FOR THE IRGM DATA AND THE RELEVANT SNP (rs13361189).__
 
@@ -32,20 +34,23 @@ Load the FCGR count data that we used last week:
 fcgrDat = read.csv('FCGR-counts.csv', row.names=1)
 ```
 
-One of the tasks last week was to use the commands you had learned to loop through the first 20 plots of the FCGR data for the CEU population.  Hopefully your code looked something like this:
+One of the tasks last week was to use the commands you had learned to loop through the first 20 plots of the FCGR data for the CEU population.  Hopefully your code looked something like this (if not, this should give you a pretty good hint of what your code *should* look like):
 
 ```{r, eval=FALSE}
 source('plotCNV.R')
 par(ask=T)
 for(i in 1:20){
   plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
-  abline(h = median(fcgrDat[,i]),col='blue')
-  abline(h = 1.5*median(fcgrDat[,i]),col='blue',lty=2)
-  abline(h = 0.5*median(fcgrDat[,i]),col='blue',lty=2)
+  abline(h = median(fcgrDat[,i]), col='blue')
+  abline(h = 1.5*median(fcgrDat[,i]), col='blue', lty=2)
+  abline(h = 0.5*median(fcgrDat[,i]), col='blue', lty=2)
 }
 ```
 
-Use this code to examine the FCGR region for the first 20 samples in the CEU population.  Which samples appear to exhibit CNV (i.e., do not have CN=2) for the FCGR3B gene (marked as "3B" on the plot)?
+One of your tasks last week was to use this code to examine the FCGR region for the first 20 samples in the CEU population.  
+The goal was to identify samples that exhibit CNV (i.e., do not have CN=2) for the FCGR3B gene (marked as "3B" on the plot).
+
+This week we are looking at copy number is ALL the samples!
 
 ## Copy number calls
 
