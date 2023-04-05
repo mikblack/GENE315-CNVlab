@@ -1,6 +1,6 @@
 GENE315 CNV lab - week 2
 ================
-Mik Black & Phil Wilcox
+Mik Black
 5 & 6 April 2023
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
@@ -20,8 +20,12 @@ This week we will be doing three things:
 - Combining the SNP and CNV data to investigate linkage disequilibrium
   (LD) in the three populations.
 
-This document will walk through some simple analysis in R to acccomplish
-the tasks above.
+This document will walk through some simple analysis in R to accomplish
+the tasks above. There is also a markdown version of this document
+online which can be viewed in a browser (makes copying and pasting code
+easier):
+
+<https://github.com/mikblack/GENE315-CNVlab/blob/master/GENE315-CNV_lab-week2.md>
 
 **REMINDER: FOR YOUR ASSIGNMENT YOU WILL NEED TO ALTER THE CODE BELOW TO
 PERFORM A SIMILAR ANALYSIS FOR THE IRGM DATA AND THE RELEVANT SNP
@@ -37,22 +41,26 @@ fcgrDat = read.csv('FCGR-counts.csv', row.names=1)
 
 One of the tasks last week was to use the commands you had learned to
 loop through the first 20 plots of the FCGR data for the CEU population.
-Hopefully your code looked something like this:
+Hopefully your code looked something like this (if not, this should give
+you a pretty good hint of what your code *should* look like):
 
 ``` r
 source('plotCNV.R')
 par(ask=T)
 for(i in 1:20){
   plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
-  abline(h = median(fcgrDat[,i]),col='blue')
-  abline(h = 1.5*median(fcgrDat[,i]),col='blue',lty=2)
-  abline(h = 0.5*median(fcgrDat[,i]),col='blue',lty=2)
+  abline(h = median(fcgrDat[,i]), col='blue')
+  abline(h = 1.5*median(fcgrDat[,i]), col='blue', lty=2)
+  abline(h = 0.5*median(fcgrDat[,i]), col='blue', lty=2)
 }
 ```
 
-Use this code to examine the FCGR region for the first 20 samples in the
-CEU population. Which samples appear to exhibit CNV (i.e., do not have
-CN=2) for the FCGR3B gene (marked as “3B” on the plot)?
+One of your tasks last week was to use this code to examine the FCGR
+region for the first 20 samples in the CEU population.  
+The goal was to identify samples that exhibit CNV (i.e., do not have
+CN=2) for the FCGR3B gene (marked as “3B” on the plot).
+
+This week we are looking at copy number is ALL the samples!
 
 ## Copy number calls
 
