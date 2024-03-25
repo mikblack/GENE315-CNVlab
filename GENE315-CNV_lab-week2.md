@@ -1,7 +1,7 @@
 GENE315 CNV lab - week 2
 ================
 Mik Black
-5 & 6 April 2023
+10 & 11 April 2024
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
 <!-- rmarkdown::render('GENE315-CNV_lab-week2.Rmd', output_format="github_document") -->
@@ -117,8 +117,7 @@ of copy number is consistent across the three populations:
 chisq.test( fcgrTab )
 ```
 
-    ## Warning in chisq.test(fcgrTab): Chi-squared approximation may be
-    ## incorrect
+    ## Warning in chisq.test(fcgrTab): Chi-squared approximation may be incorrect
 
     ## 
     ##  Pearson's Chi-squared test
@@ -328,14 +327,16 @@ by chance).
 
 ## Assignment
 
-The assignment for this module is due at 5pm on 26 April (Wednesday
-stream) or 27 April (Thursday stream). For your document, please provide
+<!-- NB: Need to add back in the week 3 content below for 2025. -->
+
+The assignment for this module is due at 5pm on 22 April (Wednesday
+stream) or 23 April (Thursday stream). For your document, please provide
 answers to the questions below, and also the questions at the end of the
-week 2 and week 3 handouts. When answering each question, please provide
-the R code used to generate the output (if required), the output itself,
-and any comments/discussion needed to fully answer the question. Please
-keep the code, output and comments together for each question (similar
-to how the lab handouts are laid out).
+week 1 handout. When answering each question, please provide the R code
+used to generate the output (if required), the output itself, and any
+comments/discussion needed to fully answer the question. Please keep the
+code, output and comments together for each question (similar to how the
+lab handouts are laid out).
 
 ### Week two questions:
 

@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 2"
 author: "Mik Black"
-date: "5 & 6 April 2023"
+date: "10 & 11 April 2024"
 output:
   html_document: default
   github_document: default
@@ -184,7 +184,9 @@ So, even though the SNP rs117435514 does not tag CNV at FCGR3B particularly well
 
 ## Assignment
 
-The assignment for this module is due at 5pm on 26 April (Wednesday stream) or 27 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+<!-- NB: Need to add back in the week 3 content below for 2025. -->
+
+The assignment for this module is due at 5pm on 22 April (Wednesday stream) or 23 April (Thursday stream). For your document, please provide answers to the questions below, and also the questions at the end of the week 1 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 ### Week two questions:
 
