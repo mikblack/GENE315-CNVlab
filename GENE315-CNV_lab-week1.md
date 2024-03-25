@@ -67,9 +67,10 @@ IRGM so you can answer the questions on the final page of this document.
 
 In this lab you will be looking at copy number variation in samples from
 the 1000 Genomes Project, using publicly available high-throughput
-sequencing data. The link for the 1000 Genomes Project is:
+sequencing data. The link for the 1000 Genomes Project information page
+is:
 
-<http://www.internationalgenome.org/>
+<https://www.internationalgenome.org/1000-genomes-summary>
 
 The first couple of questions for your assignment relate to the 1000
 Genomes Project - you should be able to find the answers to those
