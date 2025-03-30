@@ -169,9 +169,9 @@ barplot( prop.table( fcgrTab, 1), beside=TRUE, legend=TRUE,
 
 ## SNP data
 
-The file `CNcalls.csv` contains copy number calls for SNPs near the IRGM
-and FCGR3B genes. For IRGM the SNP ID is `rs13361189`, and for FCGR3B
-the SNP ID is `rs117435514`. These data are stored in the files
+The file `CNcalls.csv` contains genotype data for SNPs near the IRGM and
+FCGR3B genes. For IRGM the SNP ID is `rs13361189`, and for FCGR3B the
+SNP ID is `rs117435514`. These data are stored in the files
 `IRGM_rs13361189.csv` and `FCGR_rs117435514.csv`.
 
 These data were obtained from the ensembl website. Have a look at the

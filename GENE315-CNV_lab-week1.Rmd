@@ -49,7 +49,18 @@ from the 1000 Genomes Project, using publicly available high-throughput sequenci
 
 https://www.internationalgenome.org/1000-genomes-summary
 
+<<<<<<< HEAD
 The first couple of questions for your assignment relate to the 1000 Genomes Project - you should be able to find the answers to those questions by having a look around their website.
+=======
+The first couple of questions for your assignment relate to the 1000 Genomes Project - you should be able to find the answers to those questions by having a look around their website. In particular, this link should help with Question 1:
+
+https://www.internationalgenome.org/faq/what-sequencing-platforms-and-methods-were-used-by-different-projects-within-igsr/
+
+and this one should help with Question 2:
+
+https://www.internationalgenome.org/faq/what-do-the-population-codes-mean/
+
+>>>>>>> 4382170 (2025 update)
 
 Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site. For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.
 
