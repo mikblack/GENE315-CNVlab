@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 1"
 author: "Mik Black"
-date: "27 & 28 March 2024"
+date: "26 & 27 March 2025"
 output:
   html_document: default
   github_document: default
@@ -26,7 +26,7 @@ Deviation from the diploid copy number in genomic segments (>50 bp) is known as 
 
 ## Generation of copy number calls from 1000 Genomes data
 
-High-throughput DNA sequencing technologies provide the ability to examine copy number variation on a whole genome scale. When a sample is sequenced it is assigned an average coverage level, which reflects the number of bases sequenced relative to the size of the genome. For example, if 300 million 100bp reads are generated for a 3Gbp genome the average coverage will be 10x (number of reads x read length / genome size = 300,000,000 x 100 / 3,000,000).  Analysis approaches based on read depth use this idea to identify regions that exhibit large deviations away from the expected level of coverage to identify changes in copy number. For example, a region exhibiting 30x coverage in a diploid genome that has been sequenced to a depth of 20x could reflect a gain of one additional copy of that region of DNA. 
+High-throughput DNA sequencing technologies provide the ability to examine copy number variation on a whole genome scale. When a sample is sequenced it is assigned an average read depth level, which reflects the number of bases sequenced relative to the size of the genome. For example, if 300 million 100bp reads are generated for a 3Gbp genome the average read depth will be 10x (number of reads x read length / genome size = 300,000,000 x 100 / 3,000,000).  Analysis approaches based on read depth use this idea to identify regions that exhibit large deviations away from the expected level of read depth to identify changes in copy number. For example, a region exhibiting 30x read depth in a diploid genome that has been sequenced to a depth of 20x could reflect a gain of one additional copy of that region of DNA. 
 
 In order to generate copy number calls based on read depth, aligned sequence data are required. The 1000 Genomes Project provides such data for the genomes of thousands of individuals from populations around the world. In this part of the lab we will use data from the 1000 Genomes Project to investigate variation in gene copy number at the FCGR3B and IRGM
 <!-- ,  and AMY1  -->
@@ -49,9 +49,6 @@ from the 1000 Genomes Project, using publicly available high-throughput sequenci
 
 https://www.internationalgenome.org/1000-genomes-summary
 
-<<<<<<< HEAD
-The first couple of questions for your assignment relate to the 1000 Genomes Project - you should be able to find the answers to those questions by having a look around their website.
-=======
 The first couple of questions for your assignment relate to the 1000 Genomes Project - you should be able to find the answers to those questions by having a look around their website. In particular, this link should help with Question 1:
 
 https://www.internationalgenome.org/faq/what-sequencing-platforms-and-methods-were-used-by-different-projects-within-igsr/
@@ -60,7 +57,6 @@ and this one should help with Question 2:
 
 https://www.internationalgenome.org/faq/what-do-the-population-codes-mean/
 
->>>>>>> 4382170 (2025 update)
 
 Aligned sequence data from the 1000 Genomes Project was obtained from their ftp download site. For this lab we are using a relatively small subset of the full data (310 samples) out of 2535, from three of the 26 populations included in the study.
 
@@ -81,13 +77,13 @@ the sequencer) could be used to investigate changes in copy number.  The plot be
 shows an example of a duplication, with a corresponding increase in read depth 
 across the duplicated region:
 
-![](PNG/ngs4.png)
+<img src="PNG/ngs4.png" height="300">
 
 The opposite occurs with deletions - decreased read depth across the deleted region, as shown in the following plot:
 
-![](PNG/ngs5.png)
+<img src="PNG/ngs5.png" height="300">
 
-For low coverage samples (i.e., samples for which the average read depth is 
+For low read depth samples (i.e., samples for which the average read depth is 
 relatively low, e.g., less than 10x) simply calculating read depth at every base 
 can make for very noisy data.  An alternative is to split the region of interest
 into fixed-width *windows* (e.g., 500 or 1000bp), and calculate the total number 
@@ -95,7 +91,7 @@ of reads whose alignments start in each window (just keeping track of the start
 positions avoids double-counting, as read alignments can only start in one place).
 The plot below illustrates this idea, with the red lines indicating the windows, and the counts denoting the number of aligned reads starting in each window.
 
-![](PNG/ngs6.png)
+<img src="PNG/ngs6.png" height="200">
 
 ## Calculating read depth
 
@@ -144,17 +140,17 @@ The following parameters were used to generate the data for the two
 regions of interest:
 
 Gene region | Chr | Start | End | Length | Window
-------------|-----|-------|-----|--------|-------
+:-----------|:----|:------|:----|:-------|:------
 IRGM        | 5   | 150124000 | 150324000 | 200Kbp |  500bp
 FCGR        | 1   | 161300000 | 161800000 | 500Kbp | 1000bp
 
 <!-- AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp -->
 
-\pagebreak
+<!-- \pagebreak -->
 The populations for which data were downloaded are:
 
 Population | N (number of samples) | Columns of data set
-----|--|----
+:---|:-|:---
 CEU |  99 |    1 - 99
 CHB | 103 | 100 - 202
 YRI | 108 | 203 - 310
@@ -280,7 +276,7 @@ hist( colMeans(fcgrDat), 20, main="FCGR region: mean counts per window",
 
 #### Use the commands you've learned so far to generate a histogram of average read depth across the FCGR region for all samples.
 
-\pagebreak
+<!-- \pagebreak -->
 
 ## Exploring copy number variation
 
@@ -401,7 +397,7 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 
 <!-- NB: Need to add back in the week 3 content below for 2025. -->
 
-The assignment for this module is due at 5pm on 22 April (Wednesday stream) or 23 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The assignment for this module is due at 5pm on 28 April (Wednesday stream) or 29 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 handout.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 
 ## Week one questions:

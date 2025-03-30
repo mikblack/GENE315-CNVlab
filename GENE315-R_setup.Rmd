@@ -1,14 +1,14 @@
 ---
 title: "GENE315 - software installation"
 author: "Mik Black"
-date: "26 March 2024"
+date: "26 March 2025"
 output: 
   html_document: default
   github_document: default
 ---
 
 <!-- Run line below in R to render multiple documents: -->
-<!-- rmarkdown::render(here::here("bioc461-setup.Rmd"), output_format='all') -->
+<!-- rmarkdown::render(here::here("GENE315-R_setup.Rmd"), output_format='all') -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -27,7 +27,7 @@ To get both R and RStudio installed, follow the instructions here:
 
 `https://posit.co/download/rstudio-desktop/`
 
-First install R by clicking the "Download and Install R" button, and then install RStudio by clicking the "Download and Install RStudio" button.
+First install R by clicking the "Download and Install R" button, and then install RStudio by clicking the "Download RStudio Desktop" button.
 
 If you already have RStudio installed, you can upgrade to the latest version by choosing "Check for Updates" from the RStudio "Help" menu. 
 
