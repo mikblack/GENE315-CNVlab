@@ -26,5 +26,6 @@ PNG/samtools.png
 PNG/trapnell.png
 libraries
 .Rhistory
-
 .Rproj.user
+.DS_Store
+GENE315-CNVlab/
