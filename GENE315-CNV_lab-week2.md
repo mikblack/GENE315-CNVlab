@@ -1,12 +1,16 @@
 GENE315 CNV lab - week 2
 ================
 Mik Black
-10 & 11 April 2024
+2 & 3 April 2025
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
 <!-- rmarkdown::render('GENE315-CNV_lab-week2.Rmd', output_format="github_document") -->
 <!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
 <!-- knitr::purl('GENE315-CNV_lab-week2.Rmd') -->
+<!-- NB: change due dates at end of document -->
+<!-- To make PDF that doesn't have double links AND keeps the shaded background for code sections: -->
+<!-- system('wkhtmltopdf --minimum-font-size 14 -B 14 -T 14 -R 13 -L 13 GENE315-CNV_lab-week2.html GENE315-CNV_lab-week2.pdf') -->
+<!-- NB: use \pagebreak if anything gets split weirdly across pages. -->
 
 ## Overview
 
@@ -123,7 +127,7 @@ chisq.test( fcgrTab )
     ##  Pearson's Chi-squared test
     ## 
     ## data:  fcgrTab
-    ## X-squared = 20.186, df = 6, p-value = 0.002566
+    ## X-squared = 20, df = 6, p-value = 0.003
 
 As mentioned last week, it is more appropriate to use Fisher’s Exact
 Test when possible, as the Chi-squared test is an approximation. Here
@@ -137,7 +141,7 @@ fisher.test( fcgrTab )
     ##  Fisher's Exact Test for Count Data
     ## 
     ## data:  fcgrTab
-    ## p-value = 0.002169
+    ## p-value = 0.002
     ## alternative hypothesis: two.sided
 
 The significant p-value indicates that copy nmber variation for FCGR3B
@@ -329,14 +333,14 @@ by chance).
 
 <!-- NB: Need to add back in the week 3 content below for 2025. -->
 
-The assignment for this module is due at 5pm on 22 April (Wednesday
-stream) or 23 April (Thursday stream). For your document, please provide
+The assignment for this module is due at 5pm on 28 April (Wednesday
+stream) or 29 April (Thursday stream). For your document, please provide
 answers to the questions below, and also the questions at the end of the
-week 1 handout. When answering each question, please provide the R code
-used to generate the output (if required), the output itself, and any
-comments/discussion needed to fully answer the question. Please keep the
-code, output and comments together for each question (similar to how the
-lab handouts are laid out).
+week 1 and week 3 handouts. When answering each question, please provide
+the R code used to generate the output (if required), the output itself,
+and any comments/discussion needed to fully answer the question. Please
+keep the code, output and comments together for each question (similar
+to how the lab handouts are laid out).
 
 ### Week two questions:
 
@@ -369,12 +373,13 @@ Please include the following details in your document:
     results. How good is rs13361189 genotype at tagging loss of the
     region upstream of IRGM?
 
-6.  How do your results (in terms of association between rs13361189
-    genotype and IRGM copy number) compare to those presented by
-    Prescott et al. (2010).
+6.  Do your results (in terms of association between rs13361189 genotype
+    and IRGM copy number) agree with those presented by McCarroll et
+    al. (2008)? Provides detals to justify your conclusion. What role is
+    the IRGM deletion thought to play in increasing Crohn’s Disease
+    risk?
 
-Prescott, N. J., Dominy, K. M., Kubo, M., Lewis, C. M., Fisher, S. A.,
-Redon, R., et al. (2010). Independent and population-specific
-association of risk variants at the IRGM locus with Crohn’s disease.
-*Human Molecular Genetics*, 19(9), 1828–1839.
-<http://doi.org/10.1093/hmg/ddq041>
+McCarroll, S., Huett, A., Kuballa, P. et al. Deletion polymorphism
+upstream of IRGM associated with altered IRGM expression and Crohn’s
+disease. *Nature Genetics* 40, 1107–1112 (2008).
+<https://doi.org/10.1038/ng.215>
