@@ -13,10 +13,12 @@ output:
 <!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
 <!-- knitr::purl('GENE315-CNV_lab-week1.Rmd') -->
 
-<!-- NB: check to see if I commented stuff out below in 2020 due -->
-<!--     to the COVID-19 changes (search for "C19") -->
-
 <!-- NB: change due dates at end of document -->
+
+<!-- To make PDF that doens't have double links AND keeps the shaded background for code sections: -->
+<!-- system('wkhtmltopdf --minimum-font-size 14 -B 14 -T 14 -R 13 -L 13 GENE315-CNV_lab-week1.html GENE315-CNV_lab-week1.pdf') -->
+<!-- NB: use \pagebreak if anything gets split weirdly across pages.
+
 
 ## Background: copy number variation
 
@@ -99,6 +101,8 @@ In order to generate windows and calculate read depth for the regions and sample
 we are interested in for this lab, we need to split the region into fixed sized 
 windows, and then take the aligned data and count how many reads begin in each window.
 To do this we can use the _samtools_ application (or the _Rsamtools_ package from within R).  Unfortunately (or luckily, depending on how much you like writing code) the Rsamtools can be tricky to install, so I have carried out this process for you.
+
+\pagebreak
 
 ## Getting started in R
 
@@ -274,7 +278,7 @@ hist( colMeans(fcgrDat), 20, main="FCGR region: mean counts per window",
       xlab="Mean counts per window")
 ```
 
-#### Use the commands you've learned so far to generate a histogram of average read depth across the FCGR region for all samples.
+**Use the commands you've learned so far to generate a histogram of average read depth across the FCGR region for all samples.**
 
 <!-- \pagebreak -->
 
@@ -353,9 +357,9 @@ function to set graphics parameters):
 par(ask=TRUE)
 ```
 
-#### Use the commands you have learned so far to generate plots of the FCGR region for the first 20 samples (or all of them if you feel like hitting "enter" a lot!).
+**Use the commands you have learned so far to generate plots of the FCGR region for the first 20 samples (or all of them if you feel like hitting "enter" a lot!).**
 
-#### HINT: the following code might help you:
+**HINT: the following code might help you:**
 
 ```{r, eval=FALSE}
 i = 1
