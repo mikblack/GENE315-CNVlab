@@ -379,7 +379,7 @@ Please include the following details in your document:
     the IRGM deletion thought to play in increasing Crohn’s Disease
     risk?
 
-McCarroll, S., Huett, A., Kuballa, P. et al. Deletion polymorphism
-upstream of IRGM associated with altered IRGM expression and Crohn’s
-disease. *Nature Genetics* 40, 1107–1112 (2008).
-<https://doi.org/10.1038/ng.215>
+    McCarroll, S., Huett, A., Kuballa, P. et al. Deletion polymorphism
+    upstream of IRGM associated with altered IRGM expression and Crohn’s
+    disease. *Nature Genetics* 40, 1107–1112 (2008).
+    <https://doi.org/10.1038/ng.215>
