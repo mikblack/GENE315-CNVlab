@@ -8,13 +8,26 @@ Mik Black
 <!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
 <!-- knitr::purl('GENE315-CNV_lab-week1.Rmd') -->
 <!-- NB: change due dates at end of document -->
-<!-- To make PDF that doens't have double links AND keeps the shaded background for code sections: -->
+<!-- To make PDF that doesn't have double links AND keeps the shaded background for code sections: -->
 <!-- system('wkhtmltopdf --minimum-font-size 14 -B 14 -T 14 -R 13 -L 13 GENE315-CNV_lab-week1.html GENE315-CNV_lab-week1.pdf') -->
-<!-- NB: use \pagebreak if anything gets split weirdly across pages.
-&#10;
+<!-- NB: use \pagebreak if anything gets split weirdly across pages. -->
+
 ## Background: copy number variation
-&#10;Deviation from the diploid copy number in genomic segments (>50 bp) is known as copy number variation (CNV). Copy number variants often encompass genes and are an important but poorly understood source of variation in genomes. In humans copy number variation has been associated with phenotypes such as autoimmune disease and weight. IRGM is a relatively simple 20kb insertion-deletion upstream of the immunity-related GTPase family M gene and is associated with Crohn’s disease (Prescott et al. 2010). FCGR3B (Fc gamma receptor 3B) is within a more complex locus (refer lectures) with copy number typically varying from 0 to 4 within a population (McKinney and Merriman, 2012). It is associated with autoimmune diseases such as rheumatoid arthritis and systemic lupus erythematosus.
-&#10;<!-- AMY1 (amylase1) is the most complex locus, with copy number varying from 2 to >15 within a given population. Between populations it correlates with ancestral diet – the higher the starch, the higher the copy number (Perry et al. 2007). -->
+
+Deviation from the diploid copy number in genomic segments (\>50 bp) is
+known as copy number variation (CNV). Copy number variants often
+encompass genes and are an important but poorly understood source of
+variation in genomes. In humans copy number variation has been
+associated with phenotypes such as autoimmune disease and weight. IRGM
+is a relatively simple 20kb insertion-deletion upstream of the
+immunity-related GTPase family M gene and is associated with Crohn’s
+disease (Prescott et al. 2010). FCGR3B (Fc gamma receptor 3B) is within
+a more complex locus (refer lectures) with copy number typically varying
+from 0 to 4 within a population (McKinney and Merriman, 2012). It is
+associated with autoimmune diseases such as rheumatoid arthritis and
+systemic lupus erythematosus.
+
+<!-- AMY1 (amylase1) is the most complex locus, with copy number varying from 2 to >15 within a given population. Between populations it correlates with ancestral diet – the higher the starch, the higher the copy number (Perry et al. 2007). -->
 
 ## Generation of copy number calls from 1000 Genomes data
 
@@ -335,7 +348,7 @@ observations (such as changes in copy number):
 100 * sum( fcgrDat[,"NA06984"] ) / 500000
 ```
 
-    ## [1] 12.4302
+    ## [1] 12.4
 
 So the average read depth across this region for sample NA6984 is 12.43
 (i.e., on average, each base in this region was read 12.43 times in this
@@ -475,12 +488,12 @@ for(i in 1:6){
 }
 ```
 
-    ## [1] 124.302
-    ## [1] 222.374
-    ## [1] 202.446
+    ## [1] 124
+    ## [1] 222
+    ## [1] 202
     ## [1] 90.4
-    ## [1] 67.57
-    ## [1] 132.876
+    ## [1] 67.6
+    ## [1] 133
 
 This is the same as the result obtained from applying the `colMeans()`
 function to the first six columns of the `fcgrDat` data object:
@@ -490,7 +503,7 @@ colMeans( fcgrDat[,1:6] )
 ```
 
     ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 
-    ## 124.302 222.374 202.446  90.400  67.570 132.876
+    ##   124.3   222.4   202.4    90.4    67.6   132.9
 
 In order to use this functionality to automate plot generate, it is
 useful to turn on a setting that asks us to hit “enter” before each plot
@@ -573,23 +586,21 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
     ## p-value = 1
     ## alternative hypothesis: true odds ratio is not equal to 1
     ## 95 percent confidence interval:
-    ##  0.04766622 6.29273155
+    ##  0.0477 6.2927
     ## sample estimates:
     ## odds ratio 
-    ##  0.6369091
+    ##      0.637
 
 ## Assignment
-
-<!-- NB: Need to add back in the week 3 content below for 2025. -->
 
 The assignment for this module is due at 5pm on 28 April (Wednesday
 stream) or 29 April (Thursday stream). For your document, please provide
 answers to the questions below, and also the questions at the end of the
-week 2 handout. When answering each question, please provide the R code
-used to generate the output (if required), the output itself, and any
-comments/discussion needed to fully answer the question. Please keep the
-code, output and comments together for each question (similar to how the
-lab handouts are laid out).
+week 2 and week 3 handouts. When answering each question, please provide
+the R code used to generate the output (if required), the output itself,
+and any comments/discussion needed to fully answer the question. Please
+keep the code, output and comments together for each question (similar
+to how the lab handouts are laid out).
 
 ## Week one questions:
 
