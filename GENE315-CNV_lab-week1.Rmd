@@ -1,7 +1,7 @@
 ---
 title: "GENE315 CNV lab - week 1"
 author: "Mik Black"
-date: "26 & 27 March 2025"
+date: "25 & 26 March 2026"
 output:
   html_document: default
   github_document: default
@@ -176,12 +176,12 @@ You might find it easier to view the code and output in a web browser, rather th
 
 ## Getting the data into R
 
-In order to read the data into R, the ```read.csv()``` function can be used.  The following code reads the data for the FCGR region into an object called ```fcgrDat```.
+In order to read the data into R, the ```read.csv()``` function can be used.  The following code reads the data for the FCGR region into an object called ```fcgrDat``` (the data is in a file called ```FCGR-counts.csv```, which is in the folder called ```DataFiles```).
 The ```row.names = 1``` setting tells the command that the row names for the data
 set can be found in the first column that is read in:
 
 ```{r}
-fcgrDat = read.csv('FCGR-counts.csv', row.names = 1)
+fcgrDat = read.csv('DataFiles/FCGR-counts.csv', row.names = 1)
 ```
 
 We can get some information about the ```fcgrDat``` object as follows:
@@ -288,7 +288,7 @@ The file ```plotCNV.R``` contains a function for plotting the count data for a s
 across the region of interest.  The file can be read into R via
 
 ```{r}
-source('plotCNV.R')
+source('DataFiles/plotCNV.R')
 ```
 
 The following command plots the data for sample NA06984 across the FCGR region:
@@ -399,7 +399,7 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 
 ## Assignment
 
-The assignment for this module is due at 5pm on 28 April (Wednesday stream) or 29 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The assignment for this module is due at 5pm on 22 April (Wednesday stream) or 23 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 
 ## Week one questions:

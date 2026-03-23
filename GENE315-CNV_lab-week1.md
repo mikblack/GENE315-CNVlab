@@ -1,15 +1,22 @@
 GENE315 CNV lab - week 1
 ================
 Mik Black
-26 & 27 March 2025
+25 & 26 March 2026
 
 <!-- The following will produce markdown output that will be viewble on GitHub: -->
+
 <!-- rmarkdown::render('GENE315-CNV_lab-week1.Rmd', output_format="github_document") -->
+
 <!-- Use the following to create a file of R commands for the demonstrators (included in .gitignore): -->
+
 <!-- knitr::purl('GENE315-CNV_lab-week1.Rmd') -->
+
 <!-- NB: change due dates at end of document -->
+
 <!-- To make PDF that doesn't have double links AND keeps the shaded background for code sections: -->
+
 <!-- system('wkhtmltopdf --minimum-font-size 14 -B 14 -T 14 -R 13 -L 13 GENE315-CNV_lab-week1.html GENE315-CNV_lab-week1.pdf') -->
+
 <!-- NB: use \pagebreak if anything gets split weirdly across pages. -->
 
 ## Background: copy number variation
@@ -187,6 +194,7 @@ The following parameters were used to generate the data for the two
 | FCGR        | 1   | 161300000 | 161800000 | 500Kbp | 1000bp |
 
 <!-- AMY1A       | 1   | 104375000 | 104125000 | 250Kbp |  500bp -->
+
 <!-- \pagebreak -->
 
 The populations for which data were downloaded are:
@@ -219,12 +227,13 @@ rather than a PDF.
 
 In order to read the data into R, the `read.csv()` function can be used.
 The following code reads the data for the FCGR region into an object
-called `fcgrDat`. The `row.names = 1` setting tells the command that the
-row names for the data set can be found in the first column that is read
-in:
+called `fcgrDat` (the data is in a file called `FCGR-counts.csv`, which
+is in the folder called `DataFiles`). The `row.names = 1` setting tells
+the command that the row names for the data set can be found in the
+first column that is read in:
 
 ``` r
-fcgrDat = read.csv('FCGR-counts.csv', row.names = 1)
+fcgrDat = read.csv('DataFiles/FCGR-counts.csv', row.names = 1)
 ```
 
 We can get some information about the `fcgrDat` object as follows:
@@ -295,20 +304,21 @@ fcgrDat[1:10,"NA06984"]
 fcgrDat[,"NA06984"]
 ```
 
-    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101 113 104  96 130 114 143 121 144 110 126 119 122 111 140  94  98 117 149 142 127
-    ##  [37] 109  94 124 137 100 106  93 126 139 120 121 125 119 131  95 150 155 127 118  91 138 119 106  81  93 105 144 135 113 105  83 134 127 128 124 135
-    ##  [73] 103 111 124 102 109  97 109 117 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87 107 119 111  97 121  64 108 112 131 121 105 108
-    ## [109] 161  68  46 116 170 238 351 393 291  41  57 147 189 337 327 373 167  44 127 139 324 251 362 224  53  96 140 197 313 408 317 135  44 203 113 108
-    ## [145] 108 161 112 145  83 124 113 137 148 168 123 128 110 134  99 156 143 142 129 136 116 125 136 116 145 131 165 126 141 118 113 123 119 128 126  94
-    ## [181] 113 110 145 129 152 137 115 152 148 137 115 149 115  85  44  91 110 126 127 132 107 109 121 132 124 120 178 154 117 120 111 147 123 147 110 130
-    ## [217] 141 125 152 133 145 125 138  88 157 137  92 156 128 127 129 117 119 139 135  85 131 136  95 140 165 127 142 106 163 132 123 114 137 102 121 127
-    ## [253] 121 126 106 108 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119 129  92 120  68  79  85  99 106 125 118 103 111 144 117  80  74
-    ## [289] 139 102 100 107 110 105  99 120 125 129  77  89 115  81  66 104  98  88 106 121 102 114 106 105 135 114 118 117 108 140 114 154 100  90  52  99
-    ## [325] 102 101 106 168 151 122 137 156 110 127 103 124 117  97  98  99 115 142  97 119  65  91 113 133 154 105 143 141 140 115 117 116 143  94 122 103
-    ## [361] 112 121 115  90 175 130 152 113 101 126 158 116 148 118 141 131 111 125 140 118 124 112 110 132 154 134 137 165 118 117 100 128 146 102 110 108
-    ## [397]  38  93 110 128 117 133 100 106 124 114 116 118 127 137 124 100 122 141 120 111 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130
-    ## [433] 127 137 115 125 129 108 117 105 142 138 116 133 108 118 111 118 103 136 108 103 120 120 111 111 114 117 130 116 143 138 125 127 120 121 114 134
-    ## [469]  75 138 136 109 141  99 128 145 148 144 126 107 112 145 123 122 110 111 124 142 145 120  86 108 120 153 110 111 129 116 152 104
+    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101 113 104  96 130 114 143 121 144 110 126 119 122 111 140  94  98 117 149
+    ##  [35] 142 127 109  94 124 137 100 106  93 126 139 120 121 125 119 131  95 150 155 127 118  91 138 119 106  81  93 105 144 135 113 105  83 134
+    ##  [69] 127 128 124 135 103 111 124 102 109  97 109 117 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87 107 119 111  97 121  64
+    ## [103] 108 112 131 121 105 108 161  68  46 116 170 238 351 393 291  41  57 147 189 337 327 373 167  44 127 139 324 251 362 224  53  96 140 197
+    ## [137] 313 408 317 135  44 203 113 108 108 161 112 145  83 124 113 137 148 168 123 128 110 134  99 156 143 142 129 136 116 125 136 116 145 131
+    ## [171] 165 126 141 118 113 123 119 128 126  94 113 110 145 129 152 137 115 152 148 137 115 149 115  85  44  91 110 126 127 132 107 109 121 132
+    ## [205] 124 120 178 154 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88 157 137  92 156 128 127 129 117 119 139 135  85 131 136
+    ## [239]  95 140 165 127 142 106 163 132 123 114 137 102 121 127 121 126 106 108 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119
+    ## [273] 129  92 120  68  79  85  99 106 125 118 103 111 144 117  80  74 139 102 100 107 110 105  99 120 125 129  77  89 115  81  66 104  98  88
+    ## [307] 106 121 102 114 106 105 135 114 118 117 108 140 114 154 100  90  52  99 102 101 106 168 151 122 137 156 110 127 103 124 117  97  98  99
+    ## [341] 115 142  97 119  65  91 113 133 154 105 143 141 140 115 117 116 143  94 122 103 112 121 115  90 175 130 152 113 101 126 158 116 148 118
+    ## [375] 141 131 111 125 140 118 124 112 110 132 154 134 137 165 118 117 100 128 146 102 110 108  38  93 110 128 117 133 100 106 124 114 116 118
+    ## [409] 127 137 124 100 122 141 120 111 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130 127 137 115 125 129 108 117 105 142 138
+    ## [443] 116 133 108 118 111 118 103 136 108 103 120 120 111 111 114 117 130 116 143 138 125 127 120 121 114 134  75 138 136 109 141  99 128 145
+    ## [477] 148 144 126 107 112 145 123 122 110 111 124 142 145 120  86 108 120 153 110 111 129 116 152 104
 
 We can use this approach to calculate some basic statistics for the data
 from this sample:
@@ -348,7 +358,7 @@ observations (such as changes in copy number):
 100 * sum( fcgrDat[,"NA06984"] ) / 500000
 ```
 
-    ## [1] 12.4
+    ## [1] 12.4302
 
 So the average read depth across this region for sample NA6984 is 12.43
 (i.e., on average, each base in this region was read 12.43 times in this
@@ -408,7 +418,7 @@ The file `plotCNV.R` contains a function for plotting the count data for
 a sample across the region of interest. The file can be read into R via
 
 ``` r
-source('plotCNV.R')
+source('DataFiles/plotCNV.R')
 ```
 
 The following command plots the data for sample NA06984 across the FCGR
@@ -488,12 +498,12 @@ for(i in 1:6){
 }
 ```
 
-    ## [1] 124
-    ## [1] 222
-    ## [1] 202
+    ## [1] 124.302
+    ## [1] 222.374
+    ## [1] 202.446
     ## [1] 90.4
-    ## [1] 67.6
-    ## [1] 133
+    ## [1] 67.57
+    ## [1] 132.876
 
 This is the same as the result obtained from applying the `colMeans()`
 function to the first six columns of the `fcgrDat` data object:
@@ -503,7 +513,7 @@ colMeans( fcgrDat[,1:6] )
 ```
 
     ## NA06984 NA06985 NA06986 NA06989 NA06994 NA07000 
-    ##   124.3   222.4   202.4    90.4    67.6   132.9
+    ## 124.302 222.374 202.446  90.400  67.570 132.876
 
 In order to use this functionality to automate plot generate, it is
 useful to turn on a setting that asks us to hit “enter” before each plot
@@ -586,15 +596,15 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
     ## p-value = 1
     ## alternative hypothesis: true odds ratio is not equal to 1
     ## 95 percent confidence interval:
-    ##  0.0477 6.2927
+    ##  0.04766622 6.29273155
     ## sample estimates:
     ## odds ratio 
-    ##      0.637
+    ##  0.6369091
 
 ## Assignment
 
-The assignment for this module is due at 5pm on 28 April (Wednesday
-stream) or 29 April (Thursday stream). For your document, please provide
+The assignment for this module is due at 5pm on 22 April (Wednesday
+stream) or 23 April (Thursday stream). For your document, please provide
 answers to the questions below, and also the questions at the end of the
 week 2 and week 3 handouts. When answering each question, please provide
 the R code used to generate the output (if required), the output itself,
