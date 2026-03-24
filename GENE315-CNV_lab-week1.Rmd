@@ -113,13 +113,15 @@ We will be performing our R-based analysis using the RStudio application. There 
 
 ## Downloading the data
 
-The data and R files needed for this lab are located on Blackboard in a zip file
-in the "Module 2: Analysis of genetic variation in humans" folder.  Download this file to the desktop, and unzip it.  
-In R, set your working directory to be the folder that is created when the file is unzipped.
+The data and R files needed for this lab are located on Aoroa in a zip file under "Content | Lab Materials | Module 2". 
+Download this file to the desktop and unzip it, then double-click on the ```GENE315-CNVlab.rproj``` file. This will 
+open RStudio and set your R working directory to the correct location. In RStudio, open the file ```gene315-cnvlab.R``` -
+this contains a line of code to read in the data, plus you can use this as a place to save all the code you generate 
+in the lab (which you will need later).
 
 The zip file contains three
 <!-- four -->
-files that we will use this week:
+files that we will use this week (inside the "DataFiles" folder):
 
 <!-- * AMY1A-counts.csv - data for the AMY1A region  -->
 * FCGR-counts.csv  - data for the FCGR region 
@@ -284,6 +286,8 @@ hist( colMeans(fcgrDat), 20, main="FCGR region: mean counts per window",
 
 ## Exploring copy number variation
 
+We are now going to use the per-sample count data to explore copy number changes in the FCGR region. We are interested in **duplications** (i.e., increases in copy number) that involve the **FCGR3B** gene (denoted by "3B" in the plots we'll make below). 
+
 The file ```plotCNV.R``` contains a function for plotting the count data for a sample 
 across the region of interest.  The file can be read into R via
 
@@ -302,7 +306,7 @@ counts across the region.  The large "spiky" area to the left of the FCGR genes 
 to a region of repetitive DNA where sequence alignment is difficult.
 
 We can add information about the median to the plot using the ```abline()``` function
-(the "h" parameter denotes a horizontal line, "col" idicates colour, and "lty" selects the line type):
+(the "h" parameter denotes a horizontal line, "col" indicates colour, and "lty" selects the line type):
 
 ```{r}
 plotCNV( fcgrDat, "NA06984", "FCGR" )
@@ -325,6 +329,16 @@ y axis (this only works for the FCGR region):
 
 ```{r}
 plotCNV( fcgrDat, "NA06984", "FCGR", truncate=TRUE)
+```
+
+Here is an example (yes, it's a bit messy) of a sample that has a duplication involving the FCGR3B gene (this is what you'll be looking for below).
+
+```{r, echo=FALSE}
+plotCNV( fcgrDat, "NA12347", "FCGR", truncate=TRUE)
+abline( h = median(fcgrDat[, "NA12347"]), col='blue' )
+abline( h = 1.5*median(fcgrDat[, "NA12347"]), col='blue', lty=2 )
+text(161330000, 105, "2 copies", col='blue', font=2)
+text(161330000, 150, "3 copies", col='blue', font=2)
 ```
 
 In order to create plots for multiple samples, we can use a "for loop".  In the example below the variable ```i``` takes the values 1,2,...,6 through each iteration through the loop, and prints the value of ```i``` each time:
@@ -399,7 +413,7 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 
 ## Assignment
 
-The assignment for this module is due at 5pm on 22 April (Wednesday stream) or 23 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
+The assignment for this module is due at **noon** on 22 April (Wednesday stream) or 23 April (Thursday stream).  For your document, please provide answers to the questions below, and also the questions at the end of the week 2 and week 3 handouts.  **When answering each question, please provide the R code used to generate the output (if required), the output itself, and any comments/discussion needed to fully answer the question.**  Please keep the code, output and comments together for each question (similar to how the lab handouts are laid out).
 
 
 ## Week one questions:

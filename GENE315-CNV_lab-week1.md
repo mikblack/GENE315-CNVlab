@@ -157,14 +157,17 @@ application. There are a number of ways to use RStudio for this lab:
 
 ## Downloading the data
 
-The data and R files needed for this lab are located on Blackboard in a
-zip file in the “Module 2: Analysis of genetic variation in humans”
-folder. Download this file to the desktop, and unzip it.  
-In R, set your working directory to be the folder that is created when
-the file is unzipped.
+The data and R files needed for this lab are located on Aoroa in a zip
+file under “Content \| Lab Materials \| Module 2”. Download this file to
+the desktop and unzip it, then double-click on the
+`GENE315-CNVlab.rproj` file. This will open RStudio and set your R
+working directory to the correct location. In RStudio, open the file
+`gene315-cnvlab.R` - this contains a line of code to read in the data,
+plus you can use this as a place to save all the code you generate in
+the lab (which you will need later).
 
 The zip file contains three <!-- four --> files that we will use this
-week:
+week (inside the “DataFiles” folder):
 
 <!-- * AMY1A-counts.csv - data for the AMY1A region  -->
 
@@ -257,7 +260,8 @@ dim(fcgrDat)
 rownames(fcgrDat)[1:10]
 ```
 
-    ##  [1] "161301000" "161302000" "161303000" "161304000" "161305000" "161306000" "161307000" "161308000" "161309000" "161310000"
+    ##  [1] "161301000" "161302000" "161303000" "161304000" "161305000" "161306000" "161307000" "161308000" "161309000"
+    ## [10] "161310000"
 
 ``` r
 ## First 5 column names
@@ -304,21 +308,26 @@ fcgrDat[1:10,"NA06984"]
 fcgrDat[,"NA06984"]
 ```
 
-    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101 113 104  96 130 114 143 121 144 110 126 119 122 111 140  94  98 117 149
-    ##  [35] 142 127 109  94 124 137 100 106  93 126 139 120 121 125 119 131  95 150 155 127 118  91 138 119 106  81  93 105 144 135 113 105  83 134
-    ##  [69] 127 128 124 135 103 111 124 102 109  97 109 117 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87 107 119 111  97 121  64
-    ## [103] 108 112 131 121 105 108 161  68  46 116 170 238 351 393 291  41  57 147 189 337 327 373 167  44 127 139 324 251 362 224  53  96 140 197
-    ## [137] 313 408 317 135  44 203 113 108 108 161 112 145  83 124 113 137 148 168 123 128 110 134  99 156 143 142 129 136 116 125 136 116 145 131
-    ## [171] 165 126 141 118 113 123 119 128 126  94 113 110 145 129 152 137 115 152 148 137 115 149 115  85  44  91 110 126 127 132 107 109 121 132
-    ## [205] 124 120 178 154 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88 157 137  92 156 128 127 129 117 119 139 135  85 131 136
-    ## [239]  95 140 165 127 142 106 163 132 123 114 137 102 121 127 121 126 106 108 132 141  98  83  95 140 139 119 125  91  80 119 104  70 100 119
-    ## [273] 129  92 120  68  79  85  99 106 125 118 103 111 144 117  80  74 139 102 100 107 110 105  99 120 125 129  77  89 115  81  66 104  98  88
-    ## [307] 106 121 102 114 106 105 135 114 118 117 108 140 114 154 100  90  52  99 102 101 106 168 151 122 137 156 110 127 103 124 117  97  98  99
-    ## [341] 115 142  97 119  65  91 113 133 154 105 143 141 140 115 117 116 143  94 122 103 112 121 115  90 175 130 152 113 101 126 158 116 148 118
-    ## [375] 141 131 111 125 140 118 124 112 110 132 154 134 137 165 118 117 100 128 146 102 110 108  38  93 110 128 117 133 100 106 124 114 116 118
-    ## [409] 127 137 124 100 122 141 120 111 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130 127 137 115 125 129 108 117 105 142 138
-    ## [443] 116 133 108 118 111 118 103 136 108 103 120 120 111 111 114 117 130 116 143 138 125 127 120 121 114 134  75 138 136 109 141  99 128 145
-    ## [477] 148 144 126 107 112 145 123 122 110 111 124 142 145 120  86 108 120 153 110 111 129 116 152 104
+    ##   [1] 108 105 117 134 118 101 101 128 105  76 107 148 146 115 137 101 113 104  96 130 114 143 121 144 110 126
+    ##  [27] 119 122 111 140  94  98 117 149 142 127 109  94 124 137 100 106  93 126 139 120 121 125 119 131  95 150
+    ##  [53] 155 127 118  91 138 119 106  81  93 105 144 135 113 105  83 134 127 128 124 135 103 111 124 102 109  97
+    ##  [79] 109 117 146 125  94 137 117  73  47 114  95 130 101 103 104  41 159  87 107 119 111  97 121  64 108 112
+    ## [105] 131 121 105 108 161  68  46 116 170 238 351 393 291  41  57 147 189 337 327 373 167  44 127 139 324 251
+    ## [131] 362 224  53  96 140 197 313 408 317 135  44 203 113 108 108 161 112 145  83 124 113 137 148 168 123 128
+    ## [157] 110 134  99 156 143 142 129 136 116 125 136 116 145 131 165 126 141 118 113 123 119 128 126  94 113 110
+    ## [183] 145 129 152 137 115 152 148 137 115 149 115  85  44  91 110 126 127 132 107 109 121 132 124 120 178 154
+    ## [209] 117 120 111 147 123 147 110 130 141 125 152 133 145 125 138  88 157 137  92 156 128 127 129 117 119 139
+    ## [235] 135  85 131 136  95 140 165 127 142 106 163 132 123 114 137 102 121 127 121 126 106 108 132 141  98  83
+    ## [261]  95 140 139 119 125  91  80 119 104  70 100 119 129  92 120  68  79  85  99 106 125 118 103 111 144 117
+    ## [287]  80  74 139 102 100 107 110 105  99 120 125 129  77  89 115  81  66 104  98  88 106 121 102 114 106 105
+    ## [313] 135 114 118 117 108 140 114 154 100  90  52  99 102 101 106 168 151 122 137 156 110 127 103 124 117  97
+    ## [339]  98  99 115 142  97 119  65  91 113 133 154 105 143 141 140 115 117 116 143  94 122 103 112 121 115  90
+    ## [365] 175 130 152 113 101 126 158 116 148 118 141 131 111 125 140 118 124 112 110 132 154 134 137 165 118 117
+    ## [391] 100 128 146 102 110 108  38  93 110 128 117 133 100 106 124 114 116 118 127 137 124 100 122 141 120 111
+    ## [417] 115 119 111 122 106 128 112 118 118 117 103 141 110 100 118 130 127 137 115 125 129 108 117 105 142 138
+    ## [443] 116 133 108 118 111 118 103 136 108 103 120 120 111 111 114 117 130 116 143 138 125 127 120 121 114 134
+    ## [469]  75 138 136 109 141  99 128 145 148 144 126 107 112 145 123 122 110 111 124 142 145 120  86 108 120 153
+    ## [495] 110 111 129 116 152 104
 
 We can use this approach to calculate some basic statistics for the data
 from this sample:
@@ -414,6 +423,11 @@ average read depth across the FCGR region for all samples.**
 
 ## Exploring copy number variation
 
+We are now going to use the per-sample count data to explore copy number
+changes in the FCGR region. We are interested in **duplications** (i.e.,
+increases in copy number) that involve the **FCGR3B** gene (denoted by
+“3B” in the plots we’ll make below).
+
 The file `plotCNV.R` contains a function for plotting the count data for
 a sample across the region of interest. The file can be read into R via
 
@@ -436,7 +450,7 @@ left of the FCGR genes relates to a region of repetitive DNA where
 sequence alignment is difficult.
 
 We can add information about the median to the plot using the `abline()`
-function (the “h” parameter denotes a horizontal line, “col” idicates
+function (the “h” parameter denotes a horizontal line, “col” indicates
 colour, and “lty” selects the line type):
 
 ``` r
@@ -471,6 +485,12 @@ plotCNV( fcgrDat, "NA06984", "FCGR", truncate=TRUE)
 ```
 
 ![](GENE315-CNV_lab-week1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+Here is an example (yes, it’s a bit messy) of a sample that has a
+duplication involving the FCGR3B gene (this is what you’ll be looking
+for below).
+
+![](GENE315-CNV_lab-week1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 In order to create plots for multiple samples, we can use a “for loop”.
 In the example below the variable `i` takes the values 1,2,…,6 through
@@ -548,7 +568,7 @@ use the command:
 plotCNV( fcgrDat, colnames(fcgrDat)[203], "FCGR", truncate=TRUE)
 ```
 
-![](GENE315-CNV_lab-week1_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](GENE315-CNV_lab-week1_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 If you look through the first 20 CEU samples, and the first 20 YRI
 samples, we see about the same number of duplications at FCGR3B in each
@@ -603,14 +623,14 @@ fisher.test( matrix( c(2,18,3,17), 2,2) )
 
 ## Assignment
 
-The assignment for this module is due at 5pm on 22 April (Wednesday
+The assignment for this module is due at **noon** on 22 April (Wednesday
 stream) or 23 April (Thursday stream). For your document, please provide
 answers to the questions below, and also the questions at the end of the
-week 2 and week 3 handouts. When answering each question, please provide
-the R code used to generate the output (if required), the output itself,
-and any comments/discussion needed to fully answer the question. Please
-keep the code, output and comments together for each question (similar
-to how the lab handouts are laid out).
+week 2 and week 3 handouts. **When answering each question, please
+provide the R code used to generate the output (if required), the output
+itself, and any comments/discussion needed to fully answer the
+question.** Please keep the code, output and comments together for each
+question (similar to how the lab handouts are laid out).
 
 ## Week one questions:
 
