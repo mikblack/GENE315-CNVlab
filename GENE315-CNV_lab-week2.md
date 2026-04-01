@@ -53,7 +53,7 @@ Hopefully your code looked something like this (if not, this should give
 you a pretty good hint of what your code *should* look like):
 
 ``` r
-source('plotCNV.R')
+source('DataFiles/plotCNV.R')
 par(ask=T)
 for(i in 1:20){
   plotCNV( fcgrDat, colnames(fcgrDat)[i], "FCGR", truncate=TRUE)
